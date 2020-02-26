@@ -301,4 +301,18 @@ class UserController extends Controller
 		}
 		return response()->json(['error' => 'Please check the request params'], 401);
     }
+    
+    public function updateEnquiryStatus($id, Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+			'admission_status' => 'required',
+		]);
+		if ($validator->fails()) {
+			return response()->json(['error' => $validator->errors()], 401);
+		}
+        print_r($id);
+// 		$input = $request->all();
+//         DB::table('admission_enquiry')->where('id', $id)->update($input)
+        return response()->json(['error' => 'Please check the request params'], 401);
+    }
 }
