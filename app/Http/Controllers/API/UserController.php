@@ -312,7 +312,7 @@ class UserController extends Controller
 		}
 		$input = $request->all();
         $admission_enquiry = DB::table('admission_enquiry')->where('id', $id)->update($input);
-        if(!empty($admission_enquiry){
+        if(!empty($admission_enquiry)){
             return response()->json(['success' => $admission_enquiry], $this->successStatus);
         }
         return response()->json(['error' => 'Please check the request params'], 401);
