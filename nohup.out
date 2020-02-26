@@ -1,0 +1,323 @@
+Laravel development server started: http://0.0.0.0:8000
+[Sun Feb 23 06:49:42 2020] 160.202.39.186:64681 [200]: /favicon.ico
+[Sun Feb 23 06:51:39 2020] 160.202.39.186:64706 [200]: /favicon.ico
+[Sun Feb 23 07:03:06 2020] 160.202.39.186:64845 [200]: /favicon.ico
+[Sun Feb 23 07:07:17 2020] 160.202.39.186:64881 [200]: /favicon.ico
+[Sun Feb 23 07:07:23 2020] 160.202.39.186:64886 [200]: /favicon.ico
+[Sun Feb 23 07:08:18 2020] 160.202.39.84:63042 [200]: /favicon.ico
+[Sun Feb 23 07:08:22 2020] 160.202.39.186:64888 [200]: /favicon.ico
+[Sun Feb 23 07:08:29 2020] 160.202.39.186:64890 [200]: /favicon.ico
+[Sun Feb 23 07:08:32 2020] 160.202.39.186:64892 [200]: /favicon.ico
+[Sun Feb 23 07:08:42 2020] 160.202.39.186:64894 [200]: /favicon.ico
+[Sun Feb 23 07:08:58 2020] 160.202.39.186:64896 [200]: /favicon.ico
+[Sun Feb 23 07:09:22 2020] 160.202.39.84:63051 [200]: /favicon.ico
+[Sun Feb 23 07:09:25 2020] 160.202.39.84:63053 [200]: /favicon.ico
+[Sun Feb 23 07:23:25 2020] 160.202.39.84:63158 [200]: /favicon.ico
+[Sun Feb 23 07:23:28 2020] 160.202.39.84:63160 [200]: /favicon.ico
+[Sun Feb 23 07:23:31 2020] 160.202.39.84:63161 [200]: /favicon.ico
+[Sun Feb 23 07:23:41 2020] 160.202.39.84:63163 [200]: /favicon.ico
+[Sun Feb 23 07:25:05 2020] 160.202.39.84:63170 [200]: /favicon.ico
+[Sun Feb 23 07:29:59 2020] 160.202.39.186:65003 [200]: /favicon.ico
+[Sun Feb 23 07:30:04 2020] 160.202.39.186:65005 [200]: /favicon.ico
+[Sun Feb 23 07:39:49 2020] 160.202.39.84:63240 [200]: /favicon.ico
+[Sun Feb 23 07:59:04 2020] 160.202.39.84:63373 [200]: /favicon.ico
+[Sun Feb 23 07:59:05 2020] 160.202.39.84:63380 [200]: /favicon.ico
+[Sun Feb 23 08:40:34 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:45:00 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:45:23 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:45:31 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:53:05 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:57:56 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:58:12 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:58:29 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:58:39 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 08:58:50 2020] PHP Warning:  Missing boundary in multipart/form-data POST data in Unknown on line 0
+[Sun Feb 23 10:11:17 2020] 122.228.19.79:49571 Invalid request (Malformed HTTP request)
+[Sun Feb 23 10:36:42 2020] 160.202.39.84:64409 Invalid request (Unsupported SSL request)
+[Sun Feb 23 10:46:18 2020] 160.202.39.84:64543 [200]: /favicon.ico
+[Sun Feb 23 11:33:24 2020] 223.71.167.163:12882 Invalid request (Malformed HTTP request)
+[Sun Feb 23 12:49:25 2020] 160.202.39.186:51243 [200]: /favicon.ico
+[Sun Feb 23 12:49:38 2020] 160.202.39.186:51248 [200]: /favicon.ico
+[Sun Feb 23 12:52:42 2020] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Application::configure() in /var/www/html/blog/bootstrap/app.php:45
+Stack trace:
+#0 /var/www/html/blog/public/index.php(38): require_once()
+#1 /var/www/html/blog/server.php(21): require_once('/var/www/html/b...')
+#2 {main}
+  thrown in /var/www/html/blog/bootstrap/app.php on line 45
+[Sun Feb 23 12:52:44 2020] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Application::configure() in /var/www/html/blog/bootstrap/app.php:45
+Stack trace:
+#0 /var/www/html/blog/public/index.php(38): require_once()
+#1 /var/www/html/blog/server.php(21): require_once('/var/www/html/b...')
+#2 {main}
+  thrown in /var/www/html/blog/bootstrap/app.php on line 45
+[Sun Feb 23 12:52:46 2020] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Application::configure() in /var/www/html/blog/bootstrap/app.php:45
+Stack trace:
+#0 /var/www/html/blog/public/index.php(38): require_once()
+#1 /var/www/html/blog/server.php(21): require_once('/var/www/html/b...')
+#2 {main}
+  thrown in /var/www/html/blog/bootstrap/app.php on line 45
+[Sun Feb 23 12:52:46 2020] PHP Fatal error:  Uncaught Error: Call to undefined method Illuminate\Foundation\Application::configure() in /var/www/html/blog/bootstrap/app.php:45
+Stack trace:
+#0 /var/www/html/blog/public/index.php(38): require_once()
+#1 /var/www/html/blog/server.php(21): require_once('/var/www/html/b...')
+#2 {main}
+  thrown in /var/www/html/blog/bootstrap/app.php on line 45
+[Sun Feb 23 12:53:46 2020] 160.202.39.186:51277 [200]: /favicon.ico
+[Sun Feb 23 12:53:50 2020] 160.202.39.186:51280 [200]: /favicon.ico
+[Sun Feb 23 12:54:56 2020] 160.202.39.186:51286 [200]: /favicon.ico
+[Sun Feb 23 12:54:59 2020] 160.202.39.186:51288 [200]: /docs
+[Sun Feb 23 12:55:00 2020] 160.202.39.186:51293 [200]: /favicon.ico
+[Sun Feb 23 12:55:24 2020] 160.202.39.186:51296 [200]: /favicon.ico
+[Sun Feb 23 12:55:27 2020] 160.202.39.186:51299 [200]: /favicon.ico
+[Sun Feb 23 12:55:31 2020] 160.202.39.186:51301 [200]: /favicon.ico
+[Sun Feb 23 12:55:38 2020] 160.202.39.186:51304 [200]: /favicon.ico
+[Sun Feb 23 12:55:42 2020] 160.202.39.186:51305 [200]: /docs
+[Sun Feb 23 12:55:43 2020] 160.202.39.186:51310 [200]: /favicon.ico
+[Sun Feb 23 12:55:50 2020] 160.202.39.186:51313 [200]: /favicon.ico
+[Sun Feb 23 12:56:41 2020] 160.202.39.186:51330 [200]: /favicon.ico
+[Sun Feb 23 12:56:45 2020] 160.202.39.186:51332 [200]: /docs
+[Sun Feb 23 12:56:46 2020] 160.202.39.186:51337 [200]: /favicon.ico
+[Sun Feb 23 12:56:47 2020] 160.202.39.186:51338 [200]: /docs
+[Sun Feb 23 12:56:48 2020] 160.202.39.186:51343 [200]: /favicon.ico
+[Sun Feb 23 12:57:12 2020] 160.202.39.186:51346 [200]: /favicon.ico
+[Sun Feb 23 13:09:59 2020] 160.202.39.186:51479 [200]: /docs
+[Sun Feb 23 13:10:00 2020] 160.202.39.186:51483 [200]: /favicon.ico
+[Sun Feb 23 13:10:01 2020] 160.202.39.186:51484 [200]: /docs
+[Sun Feb 23 13:10:02 2020] 160.202.39.186:51489 [200]: /favicon.ico
+[Sun Feb 23 13:10:05 2020] 160.202.39.186:51490 [200]: /favicon.ico
+[Sun Feb 23 13:12:02 2020] 160.202.39.186:51516 [200]: /docs
+[Sun Feb 23 13:12:03 2020] 160.202.39.186:51520 [200]: /favicon.ico
+[Sun Feb 23 13:12:07 2020] 160.202.39.186:51522 [200]: /docs
+[Sun Feb 23 13:12:08 2020] 160.202.39.186:51527 [200]: /favicon.ico
+[Sun Feb 23 13:12:13 2020] 160.202.39.186:51528 [200]: /favicon.ico
+[Sun Feb 23 13:12:38 2020] 160.202.39.186:51532 [200]: /docs
+[Sun Feb 23 13:12:39 2020] 160.202.39.186:51535 [200]: /favicon.ico
+[Sun Feb 23 13:12:40 2020] 160.202.39.186:51536 [200]: /docs
+[Sun Feb 23 13:12:41 2020] 160.202.39.186:51539 [200]: /favicon.ico
+[Sun Feb 23 13:15:29 2020] 160.202.39.186:51608 [200]: /docs
+[Sun Feb 23 13:15:31 2020] 160.202.39.186:51612 [200]: /favicon.ico
+[Sun Feb 23 13:16:49 2020] 160.202.39.186:51633 [200]: /docs
+[Sun Feb 23 13:16:50 2020] 160.202.39.186:51637 [200]: /favicon.ico
+[Sun Feb 23 13:16:53 2020] 160.202.39.186:51638 [200]: /docs
+[Sun Feb 23 13:16:55 2020] 160.202.39.186:51641 [200]: /favicon.ico
+[Sun Feb 23 13:18:39 2020] 160.202.39.186:51647 [200]: /docs
+[Sun Feb 23 13:18:40 2020] 160.202.39.186:51652 [200]: /favicon.ico
+[Sun Feb 23 13:18:44 2020] 160.202.39.186:51654 [200]: /docs
+[Sun Feb 23 13:18:45 2020] 160.202.39.186:51660 [200]: /favicon.ico
+[Sun Feb 23 13:19:37 2020] 160.202.39.186:51664 [200]: /docs
+[Sun Feb 23 13:19:38 2020] 160.202.39.186:51668 [200]: /favicon.ico
+[Sun Feb 23 13:19:41 2020] 160.202.39.186:51670 [200]: /docs
+[Sun Feb 23 13:19:42 2020] 160.202.39.186:51676 [200]: /favicon.ico
+[Sun Feb 23 13:19:48 2020] 160.202.39.186:51677 [200]: /favicon.ico
+[Sun Feb 23 13:23:56 2020] 160.202.39.186:51749 [200]: /docs
+[Sun Feb 23 13:23:57 2020] 160.202.39.186:51754 [200]: /favicon.ico
+[Sun Feb 23 13:24:23 2020] 160.202.39.186:51757 [200]: /favicon.ico
+[Sun Feb 23 13:24:29 2020] 160.202.39.186:51759 [200]: /favicon.ico
+[Sun Feb 23 13:24:42 2020] 160.202.39.186:51784 [200]: /favicon.ico
+Laravel development server started: http://0.0.0.0:8000
+[Sun Feb 23 13:31:05 2020] 160.202.39.84:49339 [200]: /docs
+[Sun Feb 23 13:31:07 2020] 160.202.39.84:49344 [200]: /favicon.ico
+[Sun Feb 23 13:33:28 2020] 160.202.39.186:51937 [200]: /docs
+[Sun Feb 23 13:33:30 2020] 160.202.39.186:51941 [200]: /favicon.ico
+[Sun Feb 23 13:33:31 2020] 160.202.39.186:51942 [200]: /docs/
+[Sun Feb 23 13:33:31 2020] 160.202.39.186:51944 [200]: /docs/css/style.css
+[Sun Feb 23 13:33:31 2020] 160.202.39.186:51943 [200]: /docs/images/navbar.png
+[Sun Feb 23 13:33:31 2020] 160.202.39.186:51945 [200]: /docs/images/logo.png
+[Sun Feb 23 13:33:32 2020] 160.202.39.186:51946 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 13:33:33 2020] 160.202.39.186:51947 [200]: /favicon.ico
+[Sun Feb 23 13:33:40 2020] 160.202.39.186:51948 [200]: /docs/
+[Sun Feb 23 13:33:40 2020] 160.202.39.186:51949 [200]: /docs/css/style.css
+[Sun Feb 23 13:33:40 2020] 160.202.39.186:51950 [200]: /docs/images/navbar.png
+[Sun Feb 23 13:33:40 2020] 160.202.39.186:51951 [200]: /docs/images/logo.png
+[Sun Feb 23 13:33:41 2020] 160.202.39.186:51952 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 13:33:42 2020] 160.202.39.186:51953 [200]: /favicon.ico
+[Sun Feb 23 13:33:49 2020] 160.202.39.186:51954 [200]: /docs
+[Sun Feb 23 13:33:51 2020] 160.202.39.186:51958 [200]: /favicon.ico
+[Sun Feb 23 13:33:52 2020] 160.202.39.186:51959 [200]: /docs/
+[Sun Feb 23 13:33:53 2020] 160.202.39.186:51960 [200]: /docs/css/style.css
+[Sun Feb 23 13:33:53 2020] 160.202.39.186:51961 [200]: /docs/images/navbar.png
+[Sun Feb 23 13:33:53 2020] 160.202.39.186:51962 [200]: /docs/images/logo.png
+[Sun Feb 23 13:33:54 2020] 160.202.39.186:51963 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 13:33:54 2020] 160.202.39.186:51964 [200]: /favicon.ico
+[Sun Feb 23 13:34:48 2020] 160.202.39.186:51973 [200]: /docs/
+[Sun Feb 23 13:34:48 2020] 160.202.39.186:51974 [200]: /docs/css/style.css
+[Sun Feb 23 13:34:49 2020] 160.202.39.186:51975 [200]: /docs/js/all.js
+[Sun Feb 23 13:34:49 2020] 160.202.39.186:51976 [200]: /docs/images/navbar.png
+[Sun Feb 23 13:34:49 2020] 160.202.39.186:51977 [200]: /docs/images/logo.png
+[Sun Feb 23 13:34:50 2020] 160.202.39.186:51978 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 13:34:51 2020] 160.202.39.186:51979 [200]: /favicon.ico
+[Sun Feb 23 13:34:53 2020] 160.202.39.186:51980 [200]: /favicon.ico
+[Sun Feb 23 13:34:54 2020] 160.202.39.186:51981 [200]: /favicon.ico
+[Sun Feb 23 13:35:14 2020] 160.202.39.84:49364 [200]: /docs/
+[Sun Feb 23 13:35:14 2020] 160.202.39.84:49365 [200]: /docs/css/style.css
+[Sun Feb 23 13:35:14 2020] 160.202.39.84:49368 [200]: /docs/js/all.js
+[Sun Feb 23 13:35:14 2020] 160.202.39.84:49367 [200]: /docs/images/navbar.png
+[Sun Feb 23 13:35:14 2020] 160.202.39.84:49366 [200]: /docs/images/logo.png
+[Sun Feb 23 13:35:18 2020] 160.202.39.84:49369 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 13:35:18 2020] 160.202.39.84:49370 [200]: /docs/
+[Sun Feb 23 13:35:19 2020] 160.202.39.84:49372 [200]: /docs/css/style.css
+[Sun Feb 23 13:35:19 2020] 160.202.39.84:49371 [200]: /docs/images/navbar.png
+[Sun Feb 23 13:35:19 2020] 160.202.39.84:49374 [200]: /docs/js/all.js
+[Sun Feb 23 13:35:19 2020] 160.202.39.84:49373 [200]: /docs/images/logo.png
+[Sun Feb 23 13:35:21 2020] 160.202.39.84:49375 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 13:35:22 2020] 160.202.39.84:49376 [200]: /favicon.ico
+[Sun Feb 23 13:35:24 2020] 160.202.39.84:49377 [200]: /favicon.ico
+[Sun Feb 23 13:35:25 2020] 160.202.39.84:49378 [200]: /favicon.ico
+[Sun Feb 23 13:35:27 2020] 160.202.39.84:49379 [200]: /favicon.ico
+[Sun Feb 23 13:38:10 2020] 160.202.39.186:52027 [200]: /favicon.ico
+[Sun Feb 23 13:38:32 2020] 160.202.39.186:52029 [200]: /favicon.ico
+[Sun Feb 23 13:55:26 2020] 160.202.39.186:52127 [200]: /favicon.ico
+[Sun Feb 23 13:55:27 2020] 160.202.39.186:52128 [200]: /favicon.ico
+[Sun Feb 23 13:55:27 2020] 160.202.39.186:52129 [200]: /favicon.ico
+Laravel development server started: http://0.0.0.0:8000
+[Sun Feb 23 14:54:23 2020] 160.202.39.84:49757 [200]: /docs/
+[Sun Feb 23 14:54:25 2020] 160.202.39.84:49758 [200]: /docs/css/style.css
+[Sun Feb 23 14:54:26 2020] 160.202.39.84:49759 [200]: /docs/js/all.js
+[Sun Feb 23 14:54:26 2020] 160.202.39.84:49760 [200]: /docs/images/navbar.png
+[Sun Feb 23 14:54:27 2020] 160.202.39.84:49761 [200]: /docs/images/logo.png
+[Sun Feb 23 14:54:28 2020] 160.202.39.84:49763 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 14:54:29 2020] 160.202.39.84:49764 [200]: /favicon.ico
+[Sun Feb 23 14:54:34 2020] 160.202.39.84:49765 [200]: /favicon.ico
+[Sun Feb 23 15:09:13 2020] 160.202.39.84:49847 [200]: /favicon.ico
+[Sun Feb 23 15:09:16 2020] 160.202.39.84:49851 [200]: /favicon.ico
+[Sun Feb 23 15:09:30 2020] 160.202.39.84:49854 [200]: /favicon.ico
+[Sun Feb 23 15:09:39 2020] 160.202.39.84:49857 [200]: /favicon.ico
+[Sun Feb 23 15:10:03 2020] 160.202.39.84:49860 [200]: /favicon.ico
+[Sun Feb 23 15:10:06 2020] 160.202.39.84:49862 [200]: /favicon.ico
+[Sun Feb 23 15:26:19 2020] 160.202.39.84:49964 [200]: /docs
+[Sun Feb 23 15:26:21 2020] 160.202.39.84:49972 [200]: /favicon.ico
+[Sun Feb 23 15:26:28 2020] 160.202.39.84:49973 [200]: /favicon.ico
+[Sun Feb 23 15:26:28 2020] 160.202.39.84:49974 [200]: /favicon.ico
+[Sun Feb 23 15:26:29 2020] 160.202.39.84:49975 [200]: /favicon.ico
+[Sun Feb 23 15:26:29 2020] 160.202.39.84:49976 [200]: /favicon.ico
+[Sun Feb 23 15:26:39 2020] 160.202.39.84:49977 [200]: /docs
+[Sun Feb 23 15:26:40 2020] 160.202.39.84:49983 [200]: /favicon.ico
+[Sun Feb 23 15:26:57 2020] 160.202.39.84:49984 [200]: /docs/
+[Sun Feb 23 15:26:58 2020] 160.202.39.84:49985 [200]: /docs/css/style.css
+[Sun Feb 23 15:26:58 2020] 160.202.39.84:49986 [200]: /docs/js/all.js
+[Sun Feb 23 15:26:58 2020] 160.202.39.84:49987 [200]: /docs/images/navbar.png
+[Sun Feb 23 15:26:58 2020] 160.202.39.84:49988 [200]: /docs/images/logo.png
+[Sun Feb 23 15:27:00 2020] 160.202.39.84:49989 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Sun Feb 23 15:27:01 2020] 160.202.39.84:49990 [200]: /favicon.ico
+[Sun Feb 23 15:27:04 2020] 160.202.39.84:49991 [200]: /docs
+[Sun Feb 23 15:27:06 2020] 160.202.39.84:49996 [200]: /favicon.ico
+[Sun Feb 23 15:27:08 2020] 160.202.39.84:49997 [200]: /favicon.ico
+[Sun Feb 23 15:27:10 2020] 160.202.39.84:49998 [200]: /favicon.ico
+[Sun Feb 23 15:27:14 2020] 160.202.39.84:49999 [200]: /favicon.ico
+[Sun Feb 23 16:46:11 2020] 51.178.78.153:42022 Invalid request (Unsupported SSL request)
+[Sun Feb 23 18:29:25 2020] 51.91.212.80:39392 Invalid request (Unsupported SSL request)
+[Mon Feb 24 04:02:46 2020] 146.196.33.166:41932 [200]: /docs/
+[Mon Feb 24 04:02:47 2020] 146.196.33.166:41933 [200]: /docs/css/style.css
+[Mon Feb 24 04:02:47 2020] 146.196.33.166:41934 [200]: /docs/js/all.js
+[Mon Feb 24 04:02:49 2020] 146.196.33.166:41935 [200]: /docs/images/navbar.png
+[Mon Feb 24 04:02:49 2020] 146.196.33.166:41936 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Mon Feb 24 04:02:49 2020] 146.196.33.166:41937 [200]: /docs/images/logo.png
+[Mon Feb 24 04:02:50 2020] 146.196.33.166:41938 [200]: /favicon.ico
+[Mon Feb 24 04:03:05 2020] 146.196.33.166:41939 [200]: /favicon.ico
+[Mon Feb 24 04:03:06 2020] 146.196.33.166:41942 [200]: /favicon.ico
+[Mon Feb 24 04:03:07 2020] 146.196.33.166:41943 [200]: /favicon.ico
+[Mon Feb 24 04:03:07 2020] 146.196.33.166:41944 [200]: /favicon.ico
+[Mon Feb 24 04:03:07 2020] 146.196.33.166:41945 [200]: /favicon.ico
+[Mon Feb 24 04:03:08 2020] 146.196.33.166:41946 [200]: /favicon.ico
+[Mon Feb 24 04:03:08 2020] 146.196.33.166:41947 [200]: /favicon.ico
+[Mon Feb 24 04:03:09 2020] 146.196.33.166:41948 [200]: /favicon.ico
+[Mon Feb 24 04:03:09 2020] 146.196.33.166:41949 [200]: /favicon.ico
+[Mon Feb 24 04:03:09 2020] 146.196.33.166:41950 [200]: /favicon.ico
+[Mon Feb 24 04:03:12 2020] 146.196.33.166:41951 [200]: /favicon.ico
+[Mon Feb 24 04:03:15 2020] 146.196.33.166:41952 [200]: /favicon.ico
+[Mon Feb 24 04:03:16 2020] 146.196.33.166:41955 [200]: /favicon.ico
+[Mon Feb 24 04:03:16 2020] 146.196.33.166:41956 [200]: /favicon.ico
+[Mon Feb 24 04:03:17 2020] 146.196.33.166:41957 [200]: /favicon.ico
+[Mon Feb 24 04:03:17 2020] 146.196.33.166:41958 [200]: /favicon.ico
+[Mon Feb 24 04:03:18 2020] 146.196.33.166:41959 [200]: /favicon.ico
+[Mon Feb 24 04:03:18 2020] 146.196.33.166:41960 [200]: /favicon.ico
+[Mon Feb 24 05:09:58 2020] 222.186.19.221:48324 Invalid request (Malformed HTTP request)
+[Mon Feb 24 08:55:01 2020] 117.224.119.5:61151 [200]: /docs/
+[Mon Feb 24 08:55:02 2020] 117.224.119.5:61152 [200]: /docs/css/style.css
+[Mon Feb 24 08:55:02 2020] 117.224.119.5:61153 [200]: /docs/js/all.js
+[Mon Feb 24 08:55:05 2020] 117.224.119.5:61154 [200]: /docs/images/navbar.png
+[Mon Feb 24 08:55:05 2020] 117.224.119.5:61155 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Mon Feb 24 08:55:05 2020] 117.224.119.5:61156 [200]: /docs/images/logo.png
+[Mon Feb 24 08:55:07 2020] 117.224.119.5:61157 [200]: /favicon.ico
+[Mon Feb 24 08:55:13 2020] 117.224.119.5:61158 [200]: /favicon.ico
+[Mon Feb 24 08:55:15 2020] 117.224.119.5:61159 [200]: /favicon.ico
+[Mon Feb 24 08:55:43 2020] 117.224.119.5:61160 [200]: /docs/
+[Mon Feb 24 08:55:44 2020] 117.224.119.5:61165 [200]: /docs/css/style.css
+[Mon Feb 24 08:55:44 2020] 117.224.119.5:61166 [200]: /docs/js/all.js
+[Mon Feb 24 08:55:48 2020] 117.224.119.5:61167 [200]: /docs/images/navbar.png
+[Mon Feb 24 08:55:48 2020] 117.224.119.5:61168 [200]: /docs/images/logo.png
+[Mon Feb 24 08:55:48 2020] 117.224.119.5:61169 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Mon Feb 24 08:55:49 2020] 117.224.119.5:61170 [200]: /favicon.ico
+[Mon Feb 24 08:55:53 2020] 117.224.119.5:61171 [200]: /favicon.ico
+[Mon Feb 24 08:55:56 2020] 117.224.119.5:61173 [200]: /favicon.ico
+[Mon Feb 24 08:55:57 2020] 117.224.119.5:61174 [200]: /favicon.ico
+[Mon Feb 24 08:56:02 2020] 117.224.119.5:61175 [200]: /favicon.ico
+[Mon Feb 24 08:56:03 2020] 117.224.119.5:61176 [200]: /favicon.ico
+[Mon Feb 24 08:56:05 2020] 117.224.119.5:61177 [200]: /favicon.ico
+[Mon Feb 24 08:56:05 2020] 117.224.119.5:61178 [200]: /favicon.ico
+[Mon Feb 24 10:12:39 2020] 160.202.39.131:52892 [200]: /favicon.ico
+[Mon Feb 24 10:12:42 2020] 160.202.39.131:52893 [200]: /favicon.ico
+[Mon Feb 24 16:44:29 2020] 160.202.39.131:55548 [200]: /favicon.ico
+[Mon Feb 24 16:44:59 2020] 160.202.39.131:55554 [200]: /favicon.ico
+[Mon Feb 24 16:46:45 2020] 160.202.39.131:55581 [200]: /favicon.ico
+[Mon Feb 24 16:55:16 2020] 160.202.39.131:55713 [200]: /favicon.ico
+[Mon Feb 24 17:04:02 2020] 160.202.39.131:55826 [200]: /favicon.ico
+Laravel development server started: http://0.0.0.0:8000
+[Mon Feb 24 17:23:12 2020] 160.202.39.131:56197 [200]: /favicon.ico
+[Mon Feb 24 17:23:14 2020] 160.202.39.131:56200 [200]: /favicon.ico
+[Tue Feb 25 02:27:07 2020] 222.186.19.221:60132 Invalid request (Malformed HTTP request)
+[Tue Feb 25 05:37:29 2020] 45.136.108.68:819 Invalid request (Malformed HTTP request)
+[Tue Feb 25 05:45:13 2020] 14.142.133.134:61010 [200]: /docs
+[Tue Feb 25 05:45:14 2020] 14.142.133.134:61019 [200]: /favicon.ico
+[Tue Feb 25 05:45:20 2020] 14.142.133.134:61020 [200]: /docs/
+[Tue Feb 25 05:45:21 2020] 14.142.133.134:61050 [200]: /docs/js/all.js
+[Tue Feb 25 05:45:21 2020] 14.142.133.134:61051 [200]: /docs/css/style.css
+[Tue Feb 25 05:45:21 2020] 14.142.133.134:61049 [200]: /docs/images/navbar.png
+[Tue Feb 25 05:45:21 2020] 14.142.133.134:61052 [200]: /docs/images/logo.png
+[Tue Feb 25 05:45:24 2020] 14.142.133.134:61065 [200]: /docs/css/fonts/fontawesome-webfont.woff?v=
+[Tue Feb 25 05:45:25 2020] 14.142.133.134:61066 [200]: /favicon.ico
+[Tue Feb 25 05:45:32 2020] 14.142.133.134:61095 [200]: /favicon.ico
+[Tue Feb 25 05:45:34 2020] 14.142.133.134:61101 [200]: /favicon.ico
+[Tue Feb 25 05:45:37 2020] 14.142.133.134:61122 [200]: /favicon.ico
+[Tue Feb 25 05:45:41 2020] 14.142.133.134:61123 [200]: /favicon.ico
+[Tue Feb 25 05:45:43 2020] 14.142.133.134:61148 [200]: /favicon.ico
+[Tue Feb 25 05:45:44 2020] 14.142.133.134:61149 [200]: /favicon.ico
+[Tue Feb 25 05:45:46 2020] 14.142.133.134:61162 [200]: /favicon.ico
+[Tue Feb 25 05:47:39 2020] 14.142.133.134:61677 [200]: /favicon.ico
+[Tue Feb 25 05:50:42 2020] 14.142.133.134:62438 [200]: /favicon.ico
+[Tue Feb 25 07:11:46 2020] 14.142.133.134:49437 [200]: /favicon.ico
+[Tue Feb 25 07:12:32 2020] 14.142.133.134:50081 [200]: /favicon.ico
+[Tue Feb 25 07:12:40 2020] 14.142.133.134:50086 [200]: /favicon.ico
+[Tue Feb 25 07:12:45 2020] 14.142.133.134:50135 [200]: /favicon.ico
+[Tue Feb 25 07:12:48 2020] 14.142.133.134:50140 [200]: /favicon.ico
+[Tue Feb 25 07:12:49 2020] 14.142.133.134:50157 [200]: /favicon.ico
+[Tue Feb 25 07:12:51 2020] 14.142.133.134:50158 [200]: /favicon.ico
+[Tue Feb 25 07:12:52 2020] 14.142.133.134:50172 [200]: /favicon.ico
+[Tue Feb 25 07:12:54 2020] 14.142.133.134:50173 [200]: /favicon.ico
+[Tue Feb 25 07:15:35 2020] 14.142.133.134:50888 Invalid request (Unsupported SSL request)
+[Tue Feb 25 07:16:59 2020] 14.142.133.134:51237 Invalid request (Unsupported SSL request)
+[Tue Feb 25 07:25:16 2020] 139.162.79.87:52608 Invalid request (Malformed HTTP request)
+[Tue Feb 25 07:25:16 2020] 139.162.79.87:52854 Invalid request (Malformed HTTP request)
+[Tue Feb 25 07:25:31 2020] 139.162.79.87:37874 Invalid request (Malformed HTTP request)
+[Tue Feb 25 08:25:48 2020] 14.142.133.134:52565 Invalid request (Unsupported SSL request)
+[Tue Feb 25 08:55:26 2020] 14.142.133.134:53730 [200]: /favicon.ico
+[Tue Feb 25 08:56:15 2020] 14.142.133.134:53964 Invalid request (Unsupported SSL request)
+[Tue Feb 25 08:57:34 2020] 14.142.133.134:54309 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:11:13 2020] 14.142.133.134:57625 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:11:39 2020] 14.142.133.134:57728 [200]: /favicon.ico
+[Tue Feb 25 09:14:24 2020] 14.142.133.134:58523 [200]: /favicon.ico
+[Tue Feb 25 09:14:43 2020] 14.142.133.134:61730 [200]: /favicon.ico
+[Tue Feb 25 09:15:07 2020] 14.142.133.134:61844 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:15:13 2020] 14.142.133.134:61876 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:15:18 2020] 14.142.133.134:61896 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:15:21 2020] 14.142.133.134:61910 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:15:25 2020] 14.142.133.134:61931 Invalid request (Unsupported SSL request)
+[Tue Feb 25 09:18:23 2020] 127.0.0.1:42096 [200]: /favicon.ico
+[Tue Feb 25 09:18:33 2020] 127.0.0.1:42100 [200]: /favicon.ico
+[Tue Feb 25 09:19:19 2020] 127.0.0.1:42110 [200]: /favicon.ico
+[Tue Feb 25 09:19:22 2020] 127.0.0.1:42114 [200]: /favicon.ico
+[Tue Feb 25 11:31:27 2020] 14.142.133.134:56719 [200]: /favicon.ico
+[Tue Feb 25 11:31:32 2020] 14.142.133.134:56722 [200]: /favicon.ico
+[Tue Feb 25 11:38:00 2020] 104.152.52.32:50159 Invalid request (Connection reset by peer)
+[Tue Feb 25 22:27:34 2020] 222.186.19.221:55824 Invalid request (Malformed HTTP request)
+[Wed Feb 26 00:02:01 2020] 163.172.111.59:51599 Invalid request (Malformed HTTP request)
