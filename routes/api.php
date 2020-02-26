@@ -28,8 +28,9 @@ Route::group(['middleware' => 'auth:api'], function()
 	Route::post('post-school', 'API\UserController@registerSchool');
 	Route::post('student-save-school', 'API\UserController@schollSaveByStudent');
 	Route::get('get-school-saved-by-student', 'API\UserController@getSchoolSavedByStudent');
-        Route::patch('update-school-profile', 'API\UserController@updateSchool');
-        Route::post('post-enquiry', 'API\UserController@createEnquiry');
-        Route::get('get-enquiry', 'API\UserController@getEnquiry');
+    Route::patch('update-school-profile', 'API\UserController@updateSchool');
+    Route::post('post-enquiry', 'API\UserController@createEnquiry');
+    Route::get('get-enquiry', 'API\UserController@getEnquiry');
+    Route::patch('get-enquiry/{id}', 'API\UserController@updateEnquiryStatus');
 });
 
