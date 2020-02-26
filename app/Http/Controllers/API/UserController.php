@@ -280,7 +280,7 @@ class UserController extends Controller
 	{
 		$orderbyValue = 'DESC';
 		$schoolprofile_id = $request->get('schoolprofile_id', null);
-		$user_id = $request->get('$user_id', null);
+		$user_id = $request->get('user_id', null);
 
 		if ($schoolprofile_id != null) {	
 			$enqList = DB::table('admission_enquiry')
