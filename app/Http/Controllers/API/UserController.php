@@ -305,7 +305,7 @@ class UserController extends Controller
     public function updateEnquiryStatus($id, Request $request)
     {
         $validator = Validator::make($request->all(), [
-			'admission_status' => 'required',
+			'application_status' => 'required',
 		]);
 		if ($validator->fails()) {
 			return response()->json(['error' => $validator->errors()], 401);
