@@ -31,6 +31,6 @@ Route::group(['middleware' => 'auth:api'], function()
     Route::patch('update-school-profile', 'API\UserController@updateSchool');
     Route::post('post-enquiry', 'API\UserController@createEnquiry');
     Route::get('get-enquiry', 'API\UserController@getEnquiry');
-    Route::patch('get-enquiry/{id}', 'API\UserController@updateEnquiryStatus');
+    Route::patch('update-enquiry-status/{id}', 'API\UserController@updateEnquiryStatus');
 });
 
