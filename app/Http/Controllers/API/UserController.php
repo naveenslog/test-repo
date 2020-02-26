@@ -311,7 +311,7 @@ class UserController extends Controller
 			return response()->json(['error' => $validator->errors()], 401);
 		}
 		$input = $request->all();
-        $admission_enquiry = DB::table('admission_enquiry')->where('id', $id)->update($input)
+        $admission_enquiry = DB::table('admission_enquiry')->where('id', $id)->update($input);
         if(!empty($admission_enquiry){
             return response()->json(['success' => $admission_enquiry], $this->successStatus);
         }
