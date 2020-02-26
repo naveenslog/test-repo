@@ -310,9 +310,11 @@ class UserController extends Controller
 		if ($validator->fails()) {
 			return response()->json(['error' => $validator->errors()], 401);
 		}
-        print_r($id);
-// 		$input = $request->all();
-//         DB::table('admission_enquiry')->where('id', $id)->update($input)
+		$input = $request->all();
+        $admission_enquiry = DB::table('admission_enquiry')->where('id', $id)->update($input)
+        if(!empty($admission_enquiry){
+            return response()->json(['success' => $admission_enquiry], $this->successStatus);
+        }
         return response()->json(['error' => 'Please check the request params'], 401);
     }
 }
