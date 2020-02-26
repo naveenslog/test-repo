@@ -293,28 +293,12 @@ class UserController extends Controller
 		if ($user_id != null) {	
 			$enqList = DB::table('admission_enquiry')
 				->join('users', 'users.id', '=', 'admission_enquiry.user_id')
-				->select('admission_enquiry.id', 'users.name', 'users.email', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date')
+                ->join('schoolprofile', 'users.id', '=', 'schoolprofile.user_id')
+				->select('admission_enquiry.id', 'users.name', 'users.email', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date', 'schoolprofile.name', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.fee_structure', 'schoolprofile.rating', 'schoolprofile.admission_status', 'schoolprofile.popularity')
 				->where('user_id', $user_id)
 				->get();
 			return response()->json(['success' => $enqList], $this->successStatus);
 		}
 		return response()->json(['error' => 'Please check the request params'], 401);
-	}
-
-	// public function getEnquiry(Request $request)
-	// {
-	// 	$schoolprofile_id = $request->get('schoolprofile_id', null);
-	// 	if ($schoolprofile_id == null) {
-	// 		return response()->json(['error' => 'Please provide a valid school id'], 401);
-	// 	}
-	// 	print_r($schoolprofile_id);
-	// 	$orderbyValue = 'DESC';
-
-	// 	$enqList = DB::table('admission_enquiry')
-	// 		->join('users', 'users.id', '=', 'admission_enquiry.user_id')
-	// 		->select('admission_enquiry.id', 'users.name', 'users.email', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date')
-	// 		->where('schoolprofile_id', $schoolprofile_id)
-	// 		->get();
-	// 	return response()->json(['success' => $enqList], $this->successStatus);
-	// }
+    }
 }
