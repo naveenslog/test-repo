@@ -295,7 +295,7 @@ class UserController extends Controller
 				->join('users', 'users.id', '=', 'admission_enquiry.user_id')
                 ->join('schoolprofile', 'users.id', '=', 'schoolprofile.user_id')
 				->select('admission_enquiry.id', 'users.name', 'users.email', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date', 'schoolprofile.name', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.fee_structure', 'schoolprofile.rating', 'schoolprofile.admission_status', 'schoolprofile.popularity')
-				->where('users.user_id', $user_id)
+				->where('admission_enquiry.user_id', $user_id)
 				->get();
 			return response()->json(['success' => $enqList], $this->successStatus);
 		}
