@@ -19,12 +19,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 */
 Route::post('login', 'API\UserController@login');
+
 Route::post('register', 'API\UserController@register');
 Route::get('get-school', 'API\UserController@getSchool');
 Route::post('school-detail', 'API\UserController@schoolDetail');
+Route::post('save-school-images', 'API\UserController@schoolImages')->name('school.images');
+
 Route::group(['middleware' => 'auth:api'], function()
 {
-	Route::post('user-details', 'API\UserController@details');
+    Route::post('changepassword', 'API\UserController@changePassword');
+    Route::post('user-details', 'API\UserController@details');
 	Route::post('post-school', 'API\UserController@registerSchool');
 	Route::post('student-save-school', 'API\UserController@schollSaveByStudent');
 	Route::get('get-school-saved-by-student', 'API\UserController@getSchoolSavedByStudent');
@@ -32,5 +36,7 @@ Route::group(['middleware' => 'auth:api'], function()
     Route::post('post-enquiry', 'API\UserController@createEnquiry');
     Route::get('get-enquiry', 'API\UserController@getEnquiry');
     Route::patch('update-enquiry-status/{id}', 'API\UserController@updateEnquiryStatus');
+    
+
 });
 

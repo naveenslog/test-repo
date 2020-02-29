@@ -148,13 +148,16 @@ class UserController extends Controller
 		$schoolList =
 			DB::table('schoolprofile')
 			->join('users', 'users.id', '=', 'schoolprofile.user_id')
-			->select('users.name', 'users.user_type', 'schoolprofile.id', 'schoolprofile.admission_status', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating')
+			->select('users.name', 'users.user_type', 'schoolprofile.id', 'schoolprofile.admission_status', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating','schoolprofile.profile_image','schoolprofile.banner')
 			->where($whereField, $operator, $whereFieldValue)
 			->orderBy($orderbyFieldName, $orderbyValue)
 			->get();
-		if (!empty($schoolList)) {
+		if (!empty($schoolList)) 
+		{
 			return response()->json(['success' => $schoolList], $this->successStatus);
-		} else {
+		} 
+		else 
+		{
 			return response()->json(['error' => 'No listing found'], 401);
 		}
 	}
@@ -197,7 +200,10 @@ class UserController extends Controller
 			return response()->json(['error' => $validator->errors()], 401);
 		}
 		$schoolprofile = DB::table('schoolprofile')->where('id', $input['id'])->first();
-		if (!empty($schoolprofile)) {
+		if (!empty($schoolprofile)) 
+		{
+			$school_images = DB::table('school_images')->where('id', $input['id'])->get();
+			$schoolprofile->otherImages = $school_images;
 			return response()->json(['success' => $schoolprofile], $this->successStatus);
 		} else {
 			return response()->json(['error' => 'School not found'], 401);
@@ -232,7 +238,7 @@ class UserController extends Controller
 				DB::table('studentprofile_saved_school')
 				->join('users', 'users.id', '=', 'studentprofile_saved_school.studentprofile_id')
 				->join('schoolprofile', 'schoolprofile.id', '=', 'studentprofile_saved_school.schoolprofile_id')
-				->select('users.name', 'users.user_type', 'schoolprofile.id', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating')
+				->select('users.name', 'users.user_type', 'schoolprofile.id', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating','schoolprofile.profile_image','schoolprofile.banner')
 				->orderBy($orderbyFieldName, $orderbyValue)
 				->get();
 			if (!empty($schoolList)) {
@@ -316,5 +322,107 @@ class UserController extends Controller
             return response()->json(['success' => $admission_enquiry], $this->successStatus);
         }
         return response()->json(['error' => 'Please check the request params'], 401);
-    }
+	}
+	
+	public function schoolImages()
+	{
+		//print(request()->school_id);exit;
+		if(!empty(request()->id) && !empty(request()->image))
+		{
+			$id = request()->id;
+			$type = request()->type;
+			$urlPath =  url('/').'/images/';
+			request()->validate([
+				'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+			]);
+			$imageName = time().'.'.request()->image->getClientOriginalExtension();
+			if(request()->image->move(public_path('images'), $imageName))
+			{
+			   if($type=='user_profile')
+				{
+					DB::table('users')
+					->where('id', $id)  // find your user by their email
+					->limit(1)  // optional - to ensure only one record is updated.
+					->update(array($type => $imageName)); 
+					return response()->json(['success' => 'You have successfully upload image.','image_path'=>$urlPath.$imageName], 200);
+			   }
+			   else if($type=='profile_image' || $type=='banner')
+			   {
+					DB::table('schoolprofile')
+					->where('id', $id)  // find your user by their email
+					->limit(1)  // optional - to ensure only one record is updated.
+					->update(array($type => $imageName)); 
+					return response()->json(['success' => 'You have successfully upload image.','image_path'=>$urlPath.$imageName], 200);
+			   }
+			   else if($type=='other1' || $type=='other2' || $type=='other3' || $type=='other4' || $type=='other5')
+			   {
+					$school_images = DB::table('school_images')->where(
+						array(
+							'schoolprofile_id' => $id,
+							'type' => $type,
+							)
+						)
+					->first();
+					$imgArr = array();
+					$imgArr["image"] = $imageName;
+					$imgArr["schoolprofile_id"] = $id;
+					$imgArr["type"] = $type;
+					if(!empty($school_images))
+					{
+						DB::table('school_images')
+						->where('id', $id)  // find your user by their email
+						->limit(1)  // optional - to ensure only one record is updated.
+						->update(array('image' => $imageName)); 
+						return response()->json(['success' => 'You have successfully upload image.','image_path'=>$urlPath.$imageName], 200);
+					}
+					else
+					{
+						$admission_enquiry = DB::table('school_images')->insert($imgArr);
+						return response()->json(['success' => 'You have successfully upload image.','image_path'=>$urlPath.$imageName], 200);
+					}
+			   }
+			}
+			else
+			{
+				return response()->json(['error' => 'Please check the request params'], 401);
+			}
+		}
+		else
+		{
+			return response()->json(['error' => 'Please check the request params'], 401);
+		}
+	} 
+
+
+ function changePassword(Request $request) 
+	{
+		
+		$user = Auth::user();
+		//print_r($user);exit;
+		$data = $request->all();
+		//Changing the password only if is different of null
+		if( isset($data['oldPassword']) && !empty($data['oldPassword']) && $data['oldPassword'] !== "" && $data['oldPassword'] !=='undefined') {
+			//checking the old password first
+			//echo 'hi ';exit;
+			$check  = Auth::guard('web')->attempt([
+				'email' => $user->email,
+				'password' => $data['oldPassword']
+			]);
+			if($check && isset($data['newPassword']) && !empty($data['newPassword']) && $data['newPassword'] !== "" && $data['newPassword'] !=='undefined') {
+				$user->password = bcrypt($data['newPassword']);
+				
+				//$user->isFirstTime = false; //variable created by me to know if is the dummy password or generated by user.
+				$user->token()->revoke();
+				$token = $user->createToken('MyApp')->accessToken;
+				//Changing the type
+				$user->save();
+				return json_encode(array('token' => $token)); //sending the new token
+			}
+			else {
+				return "Wrong password information";
+			}
+		}
+		return "Wrong password information";
+	}
+
 }

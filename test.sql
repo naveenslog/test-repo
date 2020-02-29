@@ -606,6 +606,16 @@ CREATE TABLE `studentprofile_saved_school` (
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+
+CREATE TABLE `school_images` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `image` int(255) NOT NULL,
+  `schoolprofile_id` int(11) NOT NULL,
+  `type` VARCHAR(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
+
 --
 -- Dumping data for table `studentprofile_saved_school`
 --
