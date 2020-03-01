@@ -524,9 +524,9 @@ class UserController extends Controller
                 $response[$key]['about'] = $value->about;
                 $response[$key]['school_email'] = $value->school_email;
                 $response[$key]['phone'] = $value->phone;
-                $response[$key]['add_line1'] = $value->add_line1;
-                $response[$key]['add_line2'] = $value->add_line2;
-                $response[$key]['area_code'] = $value->area_code;
+               // $response[$key]['add_line1'] = $value->add_line1;
+               // $response[$key]['add_line2'] = $value->add_line2;
+               // $response[$key]['area_code'] = $value->area_code;
             }
             $school_list['school_list'] = $response;
         }
