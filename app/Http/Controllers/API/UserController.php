@@ -476,9 +476,7 @@ class UserController extends Controller
             }
             $student_list['student_list'] = $response;
         }
-        $output['success'] = "1";
-        $output['message'] = 'Student list.'; 
-        $output['data'] =   $student_list;             
+        $output = $student_list;             
         return json_encode($output);
    }
    
@@ -506,9 +504,7 @@ class UserController extends Controller
             }
             $student_list['school_list'] = $response;
         }
-        $output['success'] = "1";
-        $output['message'] = 'School list.'; 
-        $output['data'] =   $school_list;             
+        $output =  $school_list;             
         return json_encode($output);
    }
 
@@ -535,9 +531,7 @@ class UserController extends Controller
             }
             $admission_list['admission_list'] = $response;
         }
-        $output['success'] = "1";
-        $output['message'] = 'Applicant list.'; 
-        $output['data'] =   $admission_list;             
+        $output = $admission_list;             
         return json_encode($output);
    }
 
