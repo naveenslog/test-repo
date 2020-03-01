@@ -457,7 +457,7 @@ class UserController extends Controller
         return json_encode($output);
   }
   
-     public function allstudentlist(Request $request){
+    public function allstudentlist(Request $request){
         
         $data = $request->all();
         if( isset($data['page']) && !empty($data['page']) && $data['page'] !== "" && $data['page'] !=='undefined') {
@@ -472,6 +472,13 @@ class UserController extends Controller
         $limit = $limitpage; 
         $output = $response = $student_list =  array();
         
+        $get_count = DB::table('users as u')              
+            ->select('u.*')
+            ->where('u.user_type','student')
+            ->get(); 
+        $total_recourd = count($get_count);
+        $total_page = $total_recourd / $limitpage;
+        
         $get_students = DB::table('users as u')              
             ->select('u.*')
 //            ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')    
@@ -485,12 +492,12 @@ class UserController extends Controller
                 $response[$key]['student_id'] = $value->id;
                 $response[$key]['email'] = $value->email;
                 $response[$key]['name'] = $value->name;
-                $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
                 $response[$key]['user_type'] = $value->user_type;
             }
-            $student_list['student_list'] = $response;
+            $student_list = $response;
         }
-        $output = $student_list;             
+        $output['student_list'] = $student_list;
+        $output['page_count'] = ceil($total_page); 
         return json_encode($output);
    }
    
@@ -508,8 +515,19 @@ class UserController extends Controller
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
         $output = $response = $school_list =  array();
+        
+        $get_count = DB::table('users as u')              
+            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
+            ->where('u.user_type','school')
+            ->get(); 
+        $total_recourd = count($get_count);
+        $total_page = $total_recourd / $limitpage;
+        
+        
+        
         $get_school = DB::table('users as u')              
-            ->select('u.id','u.is_block','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
             ->where('u.user_type','school')
             ->offset($offset)
@@ -526,14 +544,14 @@ class UserController extends Controller
                 $response[$key]['about'] = $value->about;
                 $response[$key]['school_email'] = $value->school_email;
                 $response[$key]['phone'] = $value->phone;
-                $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
-               // $response[$key]['add_line1'] = $value->add_line1;
-               // $response[$key]['add_line2'] = $value->add_line2;
-               // $response[$key]['area_code'] = $value->area_code;
+                //$response[$key]['add_line1'] = $value->add_line1;
+                //$response[$key]['add_line2'] = $value->add_line2;
+                //$response[$key]['area_code'] = $value->area_code;
             }
-            $school_list['school_list'] = $response;
+            $school_list = $response;
         }
-        $output =  $school_list;             
+        $output['school_list'] = $school_list;
+        $output['page_count'] = ceil($total_page);             
         return json_encode($output);
    }
 
@@ -550,8 +568,18 @@ class UserController extends Controller
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
         $output = $response = $admission_list =  array();
+        
+        $get_count = DB::table('users as u') 
+            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
+            ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
+            ->where('u.user_type','student')
+            ->get(); 
+        $total_recourd = count($get_count);
+        $total_page = $total_recourd / $limitpage;
+        
+        
         $get_admission = DB::table('users as u') 
-            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type','u.is_block')    
+            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
             ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
             ->where('u.user_type','student')
             ->offset($offset)
@@ -568,15 +596,15 @@ class UserController extends Controller
                 $response[$key]['course'] = $value->course;
                 $response[$key]['age'] = $value->age;
                 $response[$key]['phone'] = $value->phone;
-                $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
             }
-            $admission_list['admission_list'] = $response;
+            $admission_list = $response;
         }
-        $output = $admission_list;             
+        $output['admission_list'] = $admission_list;
+        $output['page_count'] = ceil($total_page);              
         return json_encode($output);
    }
-   
-   public function update_user_status(Request $request){
+
+    public function update_user_status(Request $request){
 
        $data = $request->all();
        $output = array();
@@ -605,7 +633,6 @@ class UserController extends Controller
          $output = "please enter your required fields.";  
        }
        return json_encode($output);          
-   }
-   
+   }   
    
 }
