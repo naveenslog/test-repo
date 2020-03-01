@@ -424,7 +424,7 @@ class UserController extends Controller
                     $email = $data['email'];
                         $get_email  = DB::table('users as u')->select('u.*')->where('u.email', '=', $email)->get();
                         if(count($get_email) > 0){
-                            $radomsting = str_random(8);
+                            $radomsting = Str::random(8);
                             $newpass = Hash::make($radomsting); //md5($radomsting); 
                             $updatepass  = array();
                             $updatepass['password'] =  $newpass;
