@@ -528,7 +528,7 @@ class UserController extends Controller
                 $response[$key]['add_line2'] = $value->add_line2;
                 $response[$key]['area_code'] = $value->area_code;
             }
-            $student_list['school_list'] = $response;
+            $school_list['school_list'] = $response;
         }
         $output =  $school_list;             
         return json_encode($output);
