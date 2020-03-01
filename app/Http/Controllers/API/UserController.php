@@ -68,7 +68,7 @@ class UserController extends Controller
         $user = Auth::user();
         if($user["user_type"] == "school"){
             $details = Auth::user()->join('schoolprofile', 'user.id', '=', 'schoolprofile.user_id')->select('user.*', 'schoolprofile.id');
-            return response()->json(['success' => $user], $this->successStatus);
+            return response()->json(['success' => $details], $this->successStatus);
         }
         if($user["user_type"] == "student"){
             return response()->json(['success' => $user], $this->successStatus);
