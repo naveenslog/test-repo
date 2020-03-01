@@ -35,6 +35,7 @@ Route::get('allstudentlist','API\UserController@allstudentlist');
 Route::get('allschoollist','API\UserController@allschoollist');
 Route::get('allapplicationlist','API\UserController@allapplicationlist');
 Route::post('update_user_status','API\UserController@update_user_status');
+Route::post('update_student_profile','API\UserController@update_student_profile');
 
 
 Route::post('register', 'API\UserController@register');
