@@ -516,7 +516,7 @@ class UserController extends Controller
         
         $output = $response = $admission_list =  array();
         $get_admission = DB::table('admission_enquiry as ae')              
-            ->select('ae.application_status,ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
+            ->select('ae.admission_status,ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
             ->leftJoin('users as u', 'u.id', '=', 'ae.user_id')    
             ->where('u.user_type','student')    
             ->orderBy('ae.id','DESC')
@@ -528,7 +528,7 @@ class UserController extends Controller
                 $response[$key]['email'] = $value->email;
                 $response[$key]['name'] = $value->name;
                 $response[$key]['user_type'] = $value->user_type;
-                $response[$key]['application_status'] = $value->application_status;
+                $response[$key]['admission_status'] = $value->admission_status;
                 $response[$key]['course'] = $value->course;
                 $response[$key]['age'] = $value->age;
                 $response[$key]['phone'] = $value->phone;
