@@ -433,7 +433,6 @@ class UserController extends Controller
                             $isUpdate = User::where('email',$email)->update($updatepass);
                             $subject = "Forgot password";
                             $message = "your new password is: ".$radomsting; 
-                          send_emails($email, 'Forgot password', $message1, ''); 
                           
                           $headers = 'From: System  rohitkagathara.it@gmail.com' . "\r\n" .
                             'Reply-To:  rohitkagathara.it@gmail.com' . "\r\n" .
