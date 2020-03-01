@@ -90,8 +90,8 @@ class UserController extends Controller
 
 	public function registerSchool(Request $request)
 	{
-		$user = Auth::user();
-		if (!empty($user) && $user['user_type'] == 'school') {
+		$authUser = Auth::user();
+		if (!empty($authUser) && $authUser['user_type'] == 'school') {
 			$validator = Validator::make($request->all(), [
 				'name' => 'required',
 				'email' => 'required|email',
@@ -109,9 +109,7 @@ class UserController extends Controller
 			$input = $request->all();
 			$user = DB::table('schoolprofile')->where('name', $input['name'])->first();
 			if (empty($user)) {
-				/*print_r($user);
-                                        print_r($input);
-					$input['user_id'] = $user['id'];*/
+				$input['user_id'] = $authUser['id'];
 				$schoolprofile = DB::table('schoolprofile')->insert($input);
 				return response()->json(['success' => $schoolprofile], $this->successStatus);
 			} else {
