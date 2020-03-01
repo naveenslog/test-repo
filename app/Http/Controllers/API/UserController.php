@@ -197,7 +197,7 @@ class UserController extends Controller
 		$schoolprofile = DB::table('schoolprofile')->where('id', $id)->first();
 		if (!empty($schoolprofile)) 
 		{
-			$school_images = DB::table('school_images')->where('id', $input['id'])->get();
+			$school_images = DB::table('school_images')->where('id', $id)->get();
 			$schoolprofile->otherImages = $school_images;
 			return response()->json(['success' => $schoolprofile], $this->successStatus);
 		} else {
