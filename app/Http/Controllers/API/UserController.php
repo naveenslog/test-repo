@@ -190,19 +190,11 @@ class UserController extends Controller
 		}
 	}
 
-	public function schoolDetail(Request $request)
+	public function schoolDetail($id, Request $request)
 	{
 		$user = Auth::user();
-		//if(!empty($user))
-		//{
 		$input = $request->all();
-		$validator = Validator::make($request->all(), [
-			'id' => 'required',
-		]);
-		if ($validator->fails()) {
-			return response()->json(['error' => $validator->errors()], 401);
-		}
-		$schoolprofile = DB::table('schoolprofile')->where('id', $input['id'])->first();
+		$schoolprofile = DB::table('schoolprofile')->where('id', $id)->first();
 		if (!empty($schoolprofile)) 
 		{
 			$school_images = DB::table('school_images')->where('id', $input['id'])->get();
@@ -211,12 +203,6 @@ class UserController extends Controller
 		} else {
 			return response()->json(['error' => 'School not found'], 401);
 		}
-		/*}
-		else
-		{
-			return response()->json(['error'=>'No Authorized'], 401);
-		} 
-			*/
 	}
 
 
