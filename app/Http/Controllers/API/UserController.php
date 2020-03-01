@@ -445,26 +445,38 @@ class UserController extends Controller
                              $output['success'] = '0';        
                           }
             if($output['success']==1){
-                $output['message'] = 'A new password has been sent to your e-mail address. Check your inbox';
+                $output = 'A new password has been sent to your e-mail address. Check your inbox';
             }else{
-                $output['message'] = 'Email not found';
+                $output = 'Email not found';
             }
 		}else{
-            $output['message'] = 'Email not found';
+            $output = 'Email not found';
         }
             
         return json_encode($output);
   }
   
      public function allstudentlist(Request $request){
-
+        
+        $data = $request->all();
+        if( isset($data['page']) && !empty($data['page']) && $data['page'] !== "" && $data['page'] !=='undefined') {
+            $page = $data['page']; 
+        }else{
+            $page = 1;
+        }    
+        
+        $limitpage = 5;
+        $end_page = $page * $limitpage;
+        $offset = $end_page - $limitpage;
+        $limit = $limitpage; 
         $output = $response = $student_list =  array();
         
         $get_students = DB::table('users as u')              
             ->select('u.*')
 //            ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')    
             ->where('u.user_type','student')
-            ->orderBy('u.id','DESC')
+            ->offset($offset)
+            ->limit($limit)    
             ->get();           
 
         if(count($get_students) > 0){
@@ -483,12 +495,23 @@ class UserController extends Controller
    
     public function allschoollist(Request $request){
         
+        $data = $request->all();
+        if( isset($data['page']) && !empty($data['page']) && $data['page'] !== "" && $data['page'] !=='undefined') {
+            $page = $data['page']; 
+        }else{
+            $page = 1;
+        }
+        $limitpage = 5;
+        $end_page = $page * $limitpage;
+        $offset = $end_page - $limitpage;
+        $limit = $limitpage;
         $output = $response = $school_list =  array();
         $get_school = DB::table('users as u')              
             ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
             ->where('u.user_type','school')
-            ->orderBy('u.id','DESC')
+            ->offset($offset)
+            ->limit($limit)    
             ->get();           
 
         if(count($get_school) > 0){
@@ -510,12 +533,23 @@ class UserController extends Controller
 
     public function allapplicationlist(Request $request){
         
+        $data = $request->all();
+        if( isset($data['page']) && !empty($data['page']) && $data['page'] !== "" && $data['page'] !=='undefined') {
+            $page = $data['page']; 
+        }else{
+            $page = 1;
+        }
+        $limitpage = 5;
+        $end_page = $page * $limitpage;
+        $offset = $end_page - $limitpage;
+        $limit = $limitpage;
         $output = $response = $admission_list =  array();
         $get_admission = DB::table('admission_enquiry as ae')              
-            ->select('ae.admission_status,ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
-            ->leftJoin('users as u', 'u.id', '=', 'ae.user_id')    
-            ->where('u.user_type','student')    
-            ->orderBy('ae.id','DESC')
+            ->select('ae.id,ae.admission_status,ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
+            ->leftJoin('users u', 'users.id', '=', 'ae.user_id')    
+            ->where('users.user_type','student')
+            ->offset($offset)
+            ->limit($limit)    
             ->get();           
 
         if(count($get_admission) > 0){
@@ -534,5 +568,4 @@ class UserController extends Controller
         $output = $admission_list;             
         return json_encode($output);
    }
-
 }
