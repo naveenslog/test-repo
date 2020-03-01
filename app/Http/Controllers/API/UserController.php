@@ -445,12 +445,15 @@ class UserController extends Controller
                           }else{
                              $output['success'] = '0';        
                           }
-		}
             if($output['success']==1){
                 $output['message'] = 'A new password has been sent to your e-mail address. Check your inbox';
             }else{
                 $output['message'] = 'Email not found';
             }
+		}else{
+            $output['message'] = 'Email not found';
+        }
+            
         return json_encode($output);
   }
   
