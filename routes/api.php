@@ -22,7 +22,7 @@ Route::post('login', 'API\UserController@login');
 
 Route::post('register', 'API\UserController@register');
 Route::get('get-school', 'API\UserController@getSchool');
-Route::post('school-detail', 'API\UserController@schoolDetail');
+Route::get('school-detail/{id}', 'API\UserController@schoolDetail');
 Route::post('save-school-images', 'API\UserController@schoolImages')->name('school.images');
 
 Route::group(['middleware' => 'auth:api'], function()
