@@ -25,6 +25,7 @@ class UserController extends Controller
 			$user = Auth::user();
 			$success['token'] =  $user->createToken('MyApp')->accessToken;
 			$success['user_type'] = $user->user_type;
+                        $success['is_block'] = $user->is_block==0?"Un Block":"Block";
 			return response()->json(['success' => $success], $this->successStatus);
 		} else {
 			return response()->json(['error' => 'Unauthorised'], 401);
@@ -484,6 +485,7 @@ class UserController extends Controller
                 $response[$key]['student_id'] = $value->id;
                 $response[$key]['email'] = $value->email;
                 $response[$key]['name'] = $value->name;
+                $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
                 $response[$key]['user_type'] = $value->user_type;
             }
             $student_list['student_list'] = $response;
@@ -507,7 +509,7 @@ class UserController extends Controller
         $limit = $limitpage;
         $output = $response = $school_list =  array();
         $get_school = DB::table('users as u')              
-            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->select('u.id','u.is_block','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
             ->where('u.user_type','school')
             ->offset($offset)
@@ -524,6 +526,7 @@ class UserController extends Controller
                 $response[$key]['about'] = $value->about;
                 $response[$key]['school_email'] = $value->school_email;
                 $response[$key]['phone'] = $value->phone;
+                $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
                // $response[$key]['add_line1'] = $value->add_line1;
                // $response[$key]['add_line2'] = $value->add_line2;
                // $response[$key]['area_code'] = $value->area_code;
@@ -548,7 +551,7 @@ class UserController extends Controller
         $limit = $limitpage;
         $output = $response = $admission_list =  array();
         $get_admission = DB::table('users as u') 
-            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
+            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type','u.is_block')    
             ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
             ->where('u.user_type','student')
             ->offset($offset)
@@ -565,10 +568,44 @@ class UserController extends Controller
                 $response[$key]['course'] = $value->course;
                 $response[$key]['age'] = $value->age;
                 $response[$key]['phone'] = $value->phone;
+                $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
             }
             $admission_list['admission_list'] = $response;
         }
         $output = $admission_list;             
         return json_encode($output);
    }
+   
+   public function update_user_status(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
+            $user_id = $data['user_id']; 
+        }else{
+            $user_id = ''; 
+        }
+        if( isset($data['is_block']) && !empty($data['is_block']) && $data['is_block'] !== "" && $data['is_block'] !=='undefined') {
+            $is_block = $data['is_block']; 
+        }else{
+            $is_block = ''; 
+        } 
+        
+        if($user_id !='' && $is_block !=''){
+        $is_update = DB::table('users')              
+            ->where('id', '=', $user_id)
+            ->where('is_block','=',$is_block)
+            ->get();                    
+        if($is_block = 0){
+           $output = "Un block success.";
+        }else{
+          $output = "Block success.";  
+        }
+       }else{
+         $output = "please enter your required fields.";  
+       }
+       return json_encode($output);          
+   }
+   
+   
 }
