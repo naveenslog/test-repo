@@ -604,7 +604,7 @@ class UserController extends Controller
         return json_encode($output);
    }
 
-    public function update_user_status(Request $request){
+   public function update_user_status(Request $request){
 
        $data = $request->all();
        $output = array();
@@ -620,10 +620,10 @@ class UserController extends Controller
         } 
         
         if($user_id !='' && $is_block !=''){
+            $update_data['is_block'] = $is_block;
         $is_update = DB::table('users')              
             ->where('id', '=', $user_id)
-            ->where('is_block','=',$is_block)
-            ->get();                    
+            ->update($update_data);                    
         if($is_block = 0){
            $output = "Un block success.";
         }else{
@@ -632,6 +632,46 @@ class UserController extends Controller
        }else{
          $output = "please enter your required fields.";  
        }
+       return json_encode($output);          
+   }
+    
+   
+    public function update_student_profile(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
+            $user_id = $data['user_id']; 
+        }else{
+            $user_id = ''; 
+        }
+        if( isset($data['profile_name'])) {
+            $profile_name = $data['profile_name']; 
+        }else{
+            $profile_name = ''; 
+        }
+        if( isset($data['mobile'])) {
+            $mobile = $data['mobile']; 
+        }else{
+            $mobile = ''; 
+        }
+        if( isset($data['gender'])) {
+            $gender = $data['gender']; 
+        }else{
+            $gender = ''; 
+        }
+        if($user_id !=''){
+            $update_data= array();
+            $update_data['profile_name']= $profile_name;
+            $update_data['mobile']= $mobile;
+            $update_data['gender']= $gender;
+        $is_update = DB::table('studentprofile')              
+            ->where('id', '=', $user_id)
+            ->update($update_data);                    
+           $output = "Update success.";
+        }else{
+          $output = "User not select.";  
+        }
        return json_encode($output);          
    }   
    
