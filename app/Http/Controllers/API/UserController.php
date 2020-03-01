@@ -548,7 +548,7 @@ class UserController extends Controller
         $limit = $limitpage;
         $output = $response = $admission_list =  array();
         $get_admission = DB::table('users as u') 
-            ->select('ae.id','ae.admission_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
+            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
             ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
             ->where('u.user_type','student')
             ->offset($offset)
@@ -561,7 +561,7 @@ class UserController extends Controller
                 $response[$key]['email'] = $value->email;
                 $response[$key]['name'] = $value->name;
                 $response[$key]['user_type'] = $value->user_type;
-                $response[$key]['admission_status'] = $value->admission_status;
+                $response[$key]['application_status'] = $value->application_status;
                 $response[$key]['course'] = $value->course;
                 $response[$key]['age'] = $value->age;
                 $response[$key]['phone'] = $value->phone;
