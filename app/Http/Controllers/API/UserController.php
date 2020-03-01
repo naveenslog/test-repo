@@ -524,6 +524,9 @@ class UserController extends Controller
                 $response[$key]['about'] = $value->about;
                 $response[$key]['school_email'] = $value->school_email;
                 $response[$key]['phone'] = $value->phone;
+                $response[$key]['add_line1'] = $value->add_line1;
+                $response[$key]['add_line2'] = $value->add_line2;
+                $response[$key]['area_code'] = $value->area_code;
             }
             $student_list['school_list'] = $response;
         }
@@ -544,10 +547,10 @@ class UserController extends Controller
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
         $output = $response = $admission_list =  array();
-        $get_admission = DB::table('admission_enquiry as ae')              
-            ->select('ae.id','ae.admission_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
-            ->leftJoin('users u', 'users.id', '=', 'ae.user_id')    
-            ->where('users.user_type','student')
+        $get_admission = DB::table('users as u') 
+            ->select('ae.id','ae.admission_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
+            ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
+            ->where('u.user_type','student')
             ->offset($offset)
             ->limit($limit)    
             ->get();           
