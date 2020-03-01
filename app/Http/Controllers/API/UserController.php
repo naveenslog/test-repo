@@ -283,7 +283,7 @@ class UserController extends Controller
 		if ($schoolprofile_id != null) {	
 			$enqList = DB::table('admission_enquiry')
 				->join('users', 'users.id', '=', 'admission_enquiry.user_id')
-				->select('admission_enquiry.id', 'users.name', 'users.email', 'user_profile', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date')
+				->select('admission_enquiry.id', 'users.name', 'users.email', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date')
 				->where('schoolprofile_id', $schoolprofile_id)
 				->get();
 			return response()->json(['success' => $enqList], $this->successStatus);
@@ -416,5 +416,126 @@ class UserController extends Controller
 		}
 		return "Wrong password information";
 	}
+        
+        public function forgotpassword(Request $request){
+            $output =  array();
+            $data = $request->all();
+		if( isset($data['email']) && !empty($data['email']) && $data['email'] !== "" && $data['email'] !=='undefined') {
+                    $email = $data['email'];
+                        $get_email  = DB::table('users as u')->select('u.*')->where('u.email', '=', $email)->get();
+                        if(count($get_email) > 0){
+                            $radomsting = str_random(8);
+                            $newpass = Hash::make($radomsting); //md5($radomsting); 
+                            $updatepass  = array();
+                            $updatepass['password'] =  $newpass;
+                            $isUpdate = User::where('email',$email)->update($updatepass);
+                            $subject = "Forgot password";
+                            $message = "your new password is: ".$radomsting; 
+                          send_emails($email, 'Forgot password', $message1, ''); 
+                          
+                          $headers = 'From: System  rohitkagathara.it@gmail.com' . "\r\n" .
+                            'Reply-To:  rohitkagathara.it@gmail.com' . "\r\n" .
+                            'Content-Type: text/html; charset=ISO-8859-1'."\r\n".
+                            'Content-type:text/html;charset=UTF-8' . "\r\n".
+                            'X-Mailer: PHP/' . phpversion();
+                          mail($email, $subject, $message, $headers);
+                            $output['success'] = '1'; 
+                          }else{
+                             $output['success'] = '0';        
+                          }
+		}
+            if($output['success']==1){
+                $output['message'] = 'A new password has been sent to your e-mail address. Check your inbox';
+            }else{
+                $output['message'] = 'Email not found';
+            }
+        return json_encode($output);
+  }
+  
+     public function allstudentlist(Request $request){
+
+        $output = $response = $student_list =  array();
+        
+        $get_students = DB::table('users as u')              
+            ->select('u.*')
+//            ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')    
+            ->where('u.user_type','student')
+            ->orderBy('u.id','DESC')
+            ->get();           
+
+        if(count($get_students) > 0){
+           foreach ($get_students as $key => $value) {
+                $response[$key]['student_id'] = $value->id;
+                $response[$key]['email'] = $value->email;
+                $response[$key]['name'] = $value->name;
+                $response[$key]['user_type'] = $value->user_type;
+            }
+            $student_list['student_list'] = $response;
+        }
+        $output['success'] = "1";
+        $output['message'] = 'Student list.'; 
+        $output['data'] =   $student_list;             
+        return json_encode($output);
+   }
+   
+   
+    public function allschoollist(Request $request){
+        
+        $output = $response = $school_list =  array();
+        $get_school = DB::table('users as u')              
+            ->select('u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.admisstion','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
+            ->where('u.user_type','school')
+            ->orderBy('u.id','DESC')
+            ->get();           
+
+        if(count($get_school) > 0){
+           foreach ($get_school as $key => $value) {
+                $response[$key]['id'] = $value->id;
+                $response[$key]['email'] = $value->email;
+                $response[$key]['name'] = $value->name;
+                $response[$key]['user_type'] = $value->user_type;
+                $response[$key]['school_name'] = $value->school_name;
+                $response[$key]['about'] = $value->about;
+                $response[$key]['school_email'] = $value->school_email;
+                $response[$key]['phone'] = $value->phone;
+                $response[$key]['admisstion'] = $value->admisstion;
+            }
+            $student_list['school_list'] = $response;
+        }
+        $output['success'] = "1";
+        $output['message'] = 'School list.'; 
+        $output['data'] =   $school_list;             
+        return json_encode($output);
+   }
+
+    public function allapplicationlist(Request $request){
+        
+        $output = $response = $admission_list =  array();
+        $get_admission = DB::table('admission_enquiry as ae')              
+            ->select('ae.application_status,ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
+            ->leftJoin('users as u', 'u.id', '=', 'ae.user_id')    
+            ->where('u.user_type','student')    
+            ->orderBy('ae.id','DESC')
+            ->get();           
+
+        if(count($get_admission) > 0){
+           foreach ($get_admission as $key => $value) {
+                $response[$key]['id'] = $value->id;
+                $response[$key]['email'] = $value->email;
+                $response[$key]['name'] = $value->name;
+                $response[$key]['user_type'] = $value->user_type;
+                $response[$key]['application_status'] = $value->application_status;
+                $response[$key]['course'] = $value->course;
+                $response[$key]['age'] = $value->age;
+                $response[$key]['phone'] = $value->phone;
+            }
+            $admission_list['admission_list'] = $response;
+        }
+        $output['success'] = "1";
+        $output['message'] = 'Applicant list.'; 
+        $output['data'] =   $admission_list;             
+        return json_encode($output);
+   }
 
 }
