@@ -34,7 +34,7 @@ Route::post('forgotpassword','API\UserController@forgotpassword');
 Route::get('allstudentlist','API\UserController@allstudentlist');
 Route::get('allschoollist','API\UserController@allschoollist');
 Route::get('allapplicationlist','API\UserController@allapplicationlist');
-Route::post('update_user_status','API\WebservicesController@update_user_status');
+Route::post('update_user_status','API\UserController@update_user_status');
 
 
 Route::post('register', 'API\UserController@register');
