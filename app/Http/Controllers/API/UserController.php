@@ -487,7 +487,7 @@ class UserController extends Controller
         
         $output = $response = $school_list =  array();
         $get_school = DB::table('users as u')              
-            ->select('u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
             ->where('u.user_type','school')
             ->orderBy('u.id','DESC')
