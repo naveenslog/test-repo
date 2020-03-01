@@ -283,7 +283,7 @@ class UserController extends Controller
 		if ($schoolprofile_id != null) {	
 			$enqList = DB::table('admission_enquiry')
 				->join('users', 'users.id', '=', 'admission_enquiry.user_id')
-				->select('admission_enquiry.id', 'users.name', 'users.email', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date')
+				->select('admission_enquiry.id', 'users.name', 'users.email', 'user_profile', 'admission_enquiry.phone', 'admission_enquiry.age', 'admission_enquiry.course', 'admission_enquiry.application_status', 'admission_enquiry.created_date')
 				->where('schoolprofile_id', $schoolprofile_id)
 				->get();
 			return response()->json(['success' => $enqList], $this->successStatus);
