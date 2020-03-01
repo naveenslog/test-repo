@@ -465,7 +465,7 @@ class UserController extends Controller
             $page = 1;
         }    
         
-        $limitpage = 5;
+        $limitpage = 10;
         $end_page = $page * $limitpage;
         $offset = $end_page - $limitpage;
         $limit = $limitpage; 
@@ -501,7 +501,7 @@ class UserController extends Controller
         }else{
             $page = 1;
         }
-        $limitpage = 5;
+        $limitpage = 10;
         $end_page = $page * $limitpage;
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
@@ -539,13 +539,13 @@ class UserController extends Controller
         }else{
             $page = 1;
         }
-        $limitpage = 5;
+        $limitpage = 10;
         $end_page = $page * $limitpage;
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
         $output = $response = $admission_list =  array();
         $get_admission = DB::table('admission_enquiry as ae')              
-            ->select('ae.id,ae.admission_status,ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
+            ->select('ae.id','ae.admission_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type') 
             ->leftJoin('users u', 'users.id', '=', 'ae.user_id')    
             ->where('users.user_type','student')
             ->offset($offset)
