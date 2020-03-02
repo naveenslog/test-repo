@@ -203,7 +203,7 @@ class UserController extends Controller
 		$schoolprofile = DB::table('schoolprofile')->where('id', $id)->first();
 		if (!empty($schoolprofile)) 
 		{
-			$school_images = DB::table('school_images')->where('schoolprofile_id', $id)->get();
+			$school_images = DB::table('school_images')->where('id', $id)->get();
 			$schoolprofile->otherImages = $school_images;
 			return response()->json(['success' => $schoolprofile], $this->successStatus);
 		} else {
@@ -597,8 +597,6 @@ class UserController extends Controller
                 $response[$key]['age'] = $value->age;
                 $response[$key]['phone'] = $value->phone;
                 $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
-                $response[$key]['is_paid'] = $value->is_paid;
-                $response[$key]['is_verify'] = $value->is_verify;
             }
             $admission_list = $response;
         }
@@ -607,7 +605,7 @@ class UserController extends Controller
         return json_encode($output);
    }
 
-    public function update_user_status(Request $request){
+   public function update_user_status(Request $request){
 
        $data = $request->all();
        $output = array();
@@ -677,68 +675,88 @@ class UserController extends Controller
         }
        return json_encode($output);          
    }
-   
-   public function update_payment_status(Request $request){
 
-       $data = $request->all();
+    public function createSchoolByAdmin(Request $request){
+        $data = $request->all();
        $output = array();
-        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
-            $user_id = $data['user_id']; 
+        if( isset($data['name'])) {
+            $name = $data['user_id']; 
         }else{
-            $user_id = ''; 
+            $name = ''; 
         }
-        if( isset($data['is_paid']) && !empty($data['is_paid']) && $data['is_paid'] !== "" && $data['is_paid'] !=='undefined') {
-            $is_paid = $data['is_paid']; 
+        if( isset($data['email'])) {
+            $email = $data['email']; 
         }else{
-            $is_paid = ''; 
-        } 
+            $email = ''; 
+        }
+        if( isset($data['about'])) {
+            $about = $data['about']; 
+        }else{
+            $about = ''; 
+        }
+        if( isset($data['phone'])) {
+            $phone = $data['phone']; 
+        }else{
+            $phone = ''; 
+        }
+        if( isset($data['add_line1'])) {
+            $add_line1 = $data['add_line1']; 
+        }else{
+            $add_line1 = ''; 
+        }
+        if( isset($data['scholarship'])) {
+            $scholarship = $data['scholarship']; 
+        }else{
+            $scholarship = ''; 
+        }
+        if( isset($data['fee_structure'])) {
+            $fee_structure = $data['fee_structure']; 
+        }else{
+            $fee_structure = ''; 
+        }
+        if( isset($data['course_detail'])) {
+            $course_detail = $data['course_detail']; 
+        }else{
+            $course_detail = ''; 
+        }
+        if( isset($data['rating'])) {
+            $rating = $data['rating']; 
+        }else{
+            $rating = ''; 
+        }
         
-        if($user_id !='' && $is_paid !=''){
-            $update_data['is_paid'] = $is_paid;
-        $is_update = DB::table('users')              
-            ->where('id', '=', $user_id)
-            ->update($update_data);                    
-        if($is_paid = 0){
-           $output = "Un Paid.";
-        }else{
-          $output = "Paid.";  
-        }
-       }else{
-         $output = "please enter your required fields.";  
-       }
-       return json_encode($output);          
-   }
-   
-   
-      public function update_verify_status(Request $request){
+        $insert_data= array();
+        $insert_data['name']= $name;
+        $insert_data['email']= $email;
+        $insert_data['about']= $about;
+        $insert_data['phone']= $phone;
+        $insert_data['add_line1']= $add_line1;
+        $insert_data['scholarship']= $scholarship;
+        $insert_data['fee_structure']= $fee_structure;
+        $insert_data['course_detail']= $course_detail;
+        $insert_data['rating']= $rating;
+        
+        $radomsting = Str::random(8);
+        $newpass = Hash::make($radomsting); //md5($radomsting); 
+        $user_insert  = array();
+        $user_insert['name'] = $insert_data['name'];
+        $user_insert['email'] = $insert_data['email'];
+        $user_insert['user_type'] = 'school';
+        $user_insert['password'] =  $newpass;
+        $user = User::create($user_insert);
+        $insert_data['user_id']= $user->id;
+        $schoolprofile = DB::table('schoolprofile')->insert($insert_data);
+        $subject = "School Registration Successfull.";
+        $message = "your new password is: ".$radomsting; 
 
-       $data = $request->all();
-       $output = array();
-        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
-            $user_id = $data['user_id']; 
-        }else{
-            $user_id = ''; 
-        }
-        if( isset($data['is_verify']) && !empty($data['is_verify']) && $data['is_verify'] !== "" && $data['is_verify'] !=='undefined') {
-            $is_verify = $data['is_verify']; 
-        }else{
-            $is_verify = ''; 
-        } 
-        
-        if($user_id !='' && $is_paid !=''){
-            $update_data['is_verify'] = $is_verify;
-        $is_update = DB::table('users')              
-            ->where('id', '=', $user_id)
-            ->update($update_data);                    
-        if($is_verify = 0){
-           $output = "Not verify.";
-        }else{
-          $output = "Verify.";  
-        }
-       }else{
-         $output = "please enter your required fields.";  
-       }
+        $headers = 'From: System  rohitkagathara.it@gmail.com' . "\r\n" .
+          'Reply-To:  rohitkagathara.it@gmail.com' . "\r\n" .
+          'Content-Type: text/html; charset=ISO-8859-1'."\r\n".
+          'Content-type:text/html;charset=UTF-8' . "\r\n".
+          'X-Mailer: PHP/' . phpversion();
+        mail($email, $subject, $message, $headers);
+      $output = "Created Successfull.";
        return json_encode($output);          
-   }
+    }
    
 }
