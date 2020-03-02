@@ -25,6 +25,7 @@ class UserController extends Controller
 			$user = Auth::user();
 			$success['token'] =  $user->createToken('MyApp')->accessToken;
 			$success['user_type'] = $user->user_type;
+                        $success['is_block'] = $user->is_block==0?"Un Block":"Block";
 			return response()->json(['success' => $success], $this->successStatus);
 		} else {
 			return response()->json(['error' => 'Unauthorised'], 401);
@@ -456,7 +457,7 @@ class UserController extends Controller
         return json_encode($output);
   }
   
-     public function allstudentlist(Request $request){
+    public function allstudentlist(Request $request){
         
         $data = $request->all();
         if( isset($data['page']) && !empty($data['page']) && $data['page'] !== "" && $data['page'] !=='undefined') {
@@ -470,6 +471,13 @@ class UserController extends Controller
         $offset = $end_page - $limitpage;
         $limit = $limitpage; 
         $output = $response = $student_list =  array();
+        
+        $get_count = DB::table('users as u')              
+            ->select('u.*')
+            ->where('u.user_type','student')
+            ->get(); 
+        $total_recourd = count($get_count);
+        $total_page = $total_recourd / $limitpage;
         
         $get_students = DB::table('users as u')              
             ->select('u.*')
@@ -486,9 +494,10 @@ class UserController extends Controller
                 $response[$key]['name'] = $value->name;
                 $response[$key]['user_type'] = $value->user_type;
             }
-            $student_list['student_list'] = $response;
+            $student_list = $response;
         }
-        $output = $student_list;             
+        $output['student_list'] = $student_list;
+        $output['page_count'] = ceil($total_page); 
         return json_encode($output);
    }
    
@@ -506,6 +515,17 @@ class UserController extends Controller
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
         $output = $response = $school_list =  array();
+        
+        $get_count = DB::table('users as u')              
+            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
+            ->where('u.user_type','school')
+            ->get(); 
+        $total_recourd = count($get_count);
+        $total_page = $total_recourd / $limitpage;
+        
+        
+        
         $get_school = DB::table('users as u')              
             ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
@@ -524,13 +544,14 @@ class UserController extends Controller
                 $response[$key]['about'] = $value->about;
                 $response[$key]['school_email'] = $value->school_email;
                 $response[$key]['phone'] = $value->phone;
-               // $response[$key]['add_line1'] = $value->add_line1;
-               // $response[$key]['add_line2'] = $value->add_line2;
-               // $response[$key]['area_code'] = $value->area_code;
+                //$response[$key]['add_line1'] = $value->add_line1;
+                //$response[$key]['add_line2'] = $value->add_line2;
+                //$response[$key]['area_code'] = $value->area_code;
             }
-            $school_list['school_list'] = $response;
+            $school_list = $response;
         }
-        $output =  $school_list;             
+        $output['school_list'] = $school_list;
+        $output['page_count'] = ceil($total_page);             
         return json_encode($output);
    }
 
@@ -547,6 +568,16 @@ class UserController extends Controller
         $offset = $end_page - $limitpage;
         $limit = $limitpage;
         $output = $response = $admission_list =  array();
+        
+        $get_count = DB::table('users as u') 
+            ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
+            ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
+            ->where('u.user_type','student')
+            ->get(); 
+        $total_recourd = count($get_count);
+        $total_page = $total_recourd / $limitpage;
+        
+        
         $get_admission = DB::table('users as u') 
             ->select('ae.id','ae.application_status','ae.course','ae.age','ae.phone','u.email','u.name','u.user_type')    
             ->leftJoin('admission_enquiry as ae', 'u.id', '=', 'ae.user_id')    
@@ -566,9 +597,82 @@ class UserController extends Controller
                 $response[$key]['age'] = $value->age;
                 $response[$key]['phone'] = $value->phone;
             }
-            $admission_list['admission_list'] = $response;
+            $admission_list = $response;
         }
-        $output = $admission_list;             
+        $output['admission_list'] = $admission_list;
+        $output['page_count'] = ceil($total_page);              
         return json_encode($output);
    }
+
+   public function update_user_status(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
+            $user_id = $data['user_id']; 
+        }else{
+            $user_id = ''; 
+        }
+        if( isset($data['is_block']) && !empty($data['is_block']) && $data['is_block'] !== "" && $data['is_block'] !=='undefined') {
+            $is_block = $data['is_block']; 
+        }else{
+            $is_block = ''; 
+        } 
+        
+        if($user_id !='' && $is_block !=''){
+            $update_data['is_block'] = $is_block;
+        $is_update = DB::table('users')              
+            ->where('id', '=', $user_id)
+            ->update($update_data);                    
+        if($is_block = 0){
+           $output = "Un block success.";
+        }else{
+          $output = "Block success.";  
+        }
+       }else{
+         $output = "please enter your required fields.";  
+       }
+       return json_encode($output);          
+   }
+    
+   
+    public function update_student_profile(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
+            $user_id = $data['user_id']; 
+        }else{
+            $user_id = ''; 
+        }
+        if( isset($data['profile_name'])) {
+            $profile_name = $data['profile_name']; 
+        }else{
+            $profile_name = ''; 
+        }
+        if( isset($data['mobile'])) {
+            $mobile = $data['mobile']; 
+        }else{
+            $mobile = ''; 
+        }
+        if( isset($data['gender'])) {
+            $gender = $data['gender']; 
+        }else{
+            $gender = ''; 
+        }
+        if($user_id !=''){
+            $update_data= array();
+            $update_data['profile_name']= $profile_name;
+            $update_data['mobile']= $mobile;
+            $update_data['gender']= $gender;
+        $is_update = DB::table('studentprofile')              
+            ->where('id', '=', $user_id)
+            ->update($update_data);                    
+           $output = "Update success.";
+        }else{
+          $output = "User not select.";  
+        }
+       return json_encode($output);          
+   }   
+   
 }
