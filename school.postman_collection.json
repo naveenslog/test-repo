@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "8eea9141-5972-46ff-854f-fa3370bdaf0a",
+		"name": "school",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "account",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "naveen.std@outlook.in",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test@2020",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/login/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Naveen Singh",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "naveen.std@outlook.in",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test@2020",
+									"type": "text"
+								},
+								{
+									"key": "c_password",
+									"value": "Test@2020",
+									"type": "text"
+								},
+								{
+									"key": "user_type",
+									"value": "student",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/register/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "changepassword",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "user-details",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/user-details/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"user-details",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "forgotpassword",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "akash@mail.com",
+									"type": "text"
+								}
+							],
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/forgotpassword/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"forgotpassword",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "school",
+			"item": [
+				{
+					"name": "get-school",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "name",
+								"value": "Test school naveen",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/get-school/?name=tesr",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"get-school",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "tesr"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "school-detail",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/school-detail/17/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"school-detail",
+								"17",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post-school",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Test school naveen",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "testschool@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "about",
+									"value": "Some desc about the school",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "9540150666",
+									"type": "text"
+								},
+								{
+									"key": "add_line1",
+									"value": "Noida",
+									"type": "text"
+								},
+								{
+									"key": "scholarship",
+									"value": "No",
+									"type": "text"
+								},
+								{
+									"key": "fee_structure",
+									"value": "na",
+									"type": "text"
+								},
+								{
+									"key": "course_detail",
+									"value": "na",
+									"type": "text"
+								},
+								{
+									"key": "rating",
+									"value": "5",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/post-school/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"post-school",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-enquiry",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{url}}/api/get-enquiry/?schoolprofile_id=18",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"get-enquiry",
+								""
+							],
+							"query": [
+								{
+									"key": "schoolprofile_id",
+									"value": "18"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-school-profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "student",
+			"item": [
+				{
+					"name": "student-save-school",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get-school-saved-by-student",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post-enquiry",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "18",
+									"type": "text"
+								},
+								{
+									"key": "schoolprofile_id",
+									"value": "17",
+									"type": "text"
+								},
+								{
+									"key": "age",
+									"value": "20",
+									"type": "text"
+								},
+								{
+									"key": "course",
+									"value": "Some test cource",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "9540150666",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/post-enquiry/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"post-enquiry",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-enquiry-status/{id}",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "common",
+			"item": [
+				{
+					"name": "save-school-images",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "17",
+									"type": "text"
+								},
+								{
+									"key": "type",
+									"value": "user_profile",
+									"type": "text"
+								},
+								{
+									"key": "image",
+									"type": "file",
+									"src": "Users/ns00649626/Pictures/Capture.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/save-school-images/",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"save-school-images",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
