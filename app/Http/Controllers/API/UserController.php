@@ -157,7 +157,7 @@ class UserController extends Controller
 		$schoolList =
 			DB::table('schoolprofile')
 			->join('users', 'users.id', '=', 'schoolprofile.user_id')
-			->select('users.name', 'users.user_type', 'schoolprofile.id', 'schoolprofile.admission_status', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating','schoolprofile.profile_image','schoolprofile.banner')
+			->select('users.name', 'users.user_type','users.is_verify', 'schoolprofile.id', 'schoolprofile.admission_status', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating','schoolprofile.profile_image','schoolprofile.banner')
 			->where($whereField, $operator, $whereFieldValue)
 			->orderBy($orderbyFieldName, $orderbyValue)
 			->get();
@@ -205,6 +205,12 @@ class UserController extends Controller
 		{
 			$school_images = DB::table('school_images')->where('id', $id)->get();
 			$schoolprofile->otherImages = $school_images;
+            
+            $get_school_user = DB::table('users as u')              
+            ->select('u.is_verify') 
+            ->where('u.id',$schoolprofile->user_id)
+            ->get();
+            $schoolprofile->is_verify = $get_school_user->is_verify;
 			return response()->json(['success' => $schoolprofile], $this->successStatus);
 		} else {
 			return response()->json(['error' => 'School not found'], 401);
@@ -826,5 +832,51 @@ class UserController extends Controller
       $output = "Created Successfull.";
        return json_encode($output);          
     }
+    
+    public function updatePlan(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['plan_id']) && !empty($data['plan_id']) && $data['plan_id'] !== "" && $data['plan_id'] !=='undefined') {
+            $plan_id = $data['plan_id']; 
+        }else{
+            $plan_id = ''; 
+        }
+        if( isset($data['amount'])) {
+            $amount = $data['amount']; 
+        }else{
+            $amount = ''; 
+        } 
+        
+        if($plan_id !='' && $amount !=''){
+            $update_data['amount'] = $amount;
+            $is_update = DB::table('payment_plan')              
+            ->where('id', '=', $plan_id)
+            ->update($update_data);                    
+          $output = "Update Success.";  
+       }else{
+         $output = "please enter your required fields.";  
+       }
+       return json_encode($output);          
+   }
+
+    public function fatchPlan(Request $request){
+        $output = $response = $plan_list =  array();
+        
+        $get_plans = DB::table('payment_plan as pp')              
+            ->select('pp.*')
+            ->get(); 
+        
+        if(count($get_plans) > 0){
+           foreach ($get_plans as $key => $value) {
+                $response[$key]['plan_id'] = $value->id;
+                $response[$key]['name'] = $value->name;
+                $response[$key]['amount'] = $value->amount;
+            }
+            $plan_list = $response;
+        }
+        $output['plan_list'] = $plan_list;
+        return json_encode($output);
+   } 
    
 }
