@@ -689,7 +689,7 @@ class UserController extends Controller
         }else{
             $user_id = ''; 
         }
-        if( isset($data['is_paid']) && !empty($data['is_paid']) && $data['is_paid'] !== "" && $data['is_paid'] !=='undefined') {
+        if( isset($data['is_paid'])) {
             $is_paid = $data['is_paid']; 
         }else{
             $is_paid = ''; 
@@ -721,7 +721,7 @@ class UserController extends Controller
         }else{
             $user_id = ''; 
         }
-        if( isset($data['is_verify']) && !empty($data['is_verify']) && $data['is_verify'] !== "" && $data['is_verify'] !=='undefined') {
+        if( isset($data['is_verify'])) {
             $is_verify = $data['is_verify']; 
         }else{
             $is_verify = ''; 
