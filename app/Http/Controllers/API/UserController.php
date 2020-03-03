@@ -628,7 +628,7 @@ class UserController extends Controller
         $is_update = DB::table('users')              
             ->where('id', '=', $user_id)
             ->update($update_data);                    
-        if($is_block = 0){
+        if($is_block == 0){
            $output = "Un block success.";
         }else{
           $output = "Block success.";  
@@ -700,7 +700,7 @@ class UserController extends Controller
         $is_update = DB::table('users')              
             ->where('id', '=', $user_id)
             ->update($update_data);                    
-        if($is_paid = 0){
+        if($is_paid == 0){
            $output = "Un Paid.";
         }else{
           $output = "Paid.";  
@@ -727,12 +727,12 @@ class UserController extends Controller
             $is_verify = ''; 
         } 
         
-        if($user_id !='' && $is_paid !=''){
+        if($user_id !='' && $is_verify !=''){
             $update_data['is_verify'] = $is_verify;
         $is_update = DB::table('users')              
             ->where('id', '=', $user_id)
             ->update($update_data);                    
-        if($is_verify = 0){
+        if($is_verify == 0){
            $output = "Not verify.";
         }else{
           $output = "Verify.";  
