@@ -846,10 +846,16 @@ class UserController extends Controller
             $amount = $data['amount']; 
         }else{
             $amount = ''; 
-        } 
+        }
+        if( isset($data['duration'])) {
+            $duration = $data['duration']; 
+        }else{
+            $duration = ''; 
+        }
         
         if($plan_id !='' && $amount !=''){
             $update_data['amount'] = $amount;
+            $update_data['duration'] = $duration;
             $is_update = DB::table('payment_plan')              
             ->where('id', '=', $plan_id)
             ->update($update_data);                    
@@ -872,6 +878,7 @@ class UserController extends Controller
                 $response[$key]['plan_id'] = $value->id;
                 $response[$key]['name'] = $value->name;
                 $response[$key]['amount'] = $value->amount;
+               $response[$key]['duration'] = $value->duration;
             }
             $plan_list = $response;
         }
