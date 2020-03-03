@@ -517,7 +517,7 @@ class UserController extends Controller
         $output = $response = $school_list =  array();
         
         $get_count = DB::table('users as u')              
-            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code','u.is_block') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
             ->where('u.user_type','school')
             ->get(); 
@@ -527,7 +527,7 @@ class UserController extends Controller
         
         
         $get_school = DB::table('users as u')              
-            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code') 
+            ->select('u.id','u.name','u.email','u.user_type','sp.name as school_name','sp.about','sp.email as school_email','sp.phone','sp.add_line1','sp.add_line2','sp.area_code','u.is_block') 
             ->leftJoin('schoolprofile as sp', 'sp.user_id', '=', 'u.id')     
             ->where('u.user_type','school')
             ->offset($offset)
@@ -544,6 +544,7 @@ class UserController extends Controller
                 $response[$key]['about'] = $value->about;
                 $response[$key]['school_email'] = $value->school_email;
                 $response[$key]['phone'] = $value->phone;
+$response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
                 //$response[$key]['add_line1'] = $value->add_line1;
                 //$response[$key]['add_line2'] = $value->add_line2;
                 //$response[$key]['area_code'] = $value->area_code;
