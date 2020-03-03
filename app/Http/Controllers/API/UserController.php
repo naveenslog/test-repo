@@ -678,6 +678,70 @@ class UserController extends Controller
         }
        return json_encode($output);          
    }
+    
+       
+   public function update_payment_status(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
+            $user_id = $data['user_id']; 
+        }else{
+            $user_id = ''; 
+        }
+        if( isset($data['is_paid']) && !empty($data['is_paid']) && $data['is_paid'] !== "" && $data['is_paid'] !=='undefined') {
+            $is_paid = $data['is_paid']; 
+        }else{
+            $is_paid = ''; 
+        } 
+        
+        if($user_id !='' && $is_paid !=''){
+            $update_data['is_paid'] = $is_paid;
+        $is_update = DB::table('users')              
+            ->where('id', '=', $user_id)
+            ->update($update_data);                    
+        if($is_paid = 0){
+           $output = "Un Paid.";
+        }else{
+          $output = "Paid.";  
+        }
+       }else{
+         $output = "please enter your required fields.";  
+       }
+       return json_encode($output);          
+   }
+   
+   
+      public function update_verify_status(Request $request){
+
+       $data = $request->all();
+       $output = array();
+        if( isset($data['user_id']) && !empty($data['user_id']) && $data['user_id'] !== "" && $data['user_id'] !=='undefined') {
+            $user_id = $data['user_id']; 
+        }else{
+            $user_id = ''; 
+        }
+        if( isset($data['is_verify']) && !empty($data['is_verify']) && $data['is_verify'] !== "" && $data['is_verify'] !=='undefined') {
+            $is_verify = $data['is_verify']; 
+        }else{
+            $is_verify = ''; 
+        } 
+        
+        if($user_id !='' && $is_paid !=''){
+            $update_data['is_verify'] = $is_verify;
+        $is_update = DB::table('users')              
+            ->where('id', '=', $user_id)
+            ->update($update_data);                    
+        if($is_verify = 0){
+           $output = "Not verify.";
+        }else{
+          $output = "Verify.";  
+        }
+       }else{
+         $output = "please enter your required fields.";  
+       }
+       return json_encode($output);          
+   }
 
     public function createSchoolByAdmin(Request $request){
         $data = $request->all();
