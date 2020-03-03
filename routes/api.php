@@ -39,6 +39,8 @@ Route::post('update_verify_status','API\UserController@update_verify_status');
 Route::post('update_payment_status','API\UserController@update_payment_status');
 Route::post('update_student_profile','API\UserController@update_student_profile');
 Route::post('createSchoolByAdmin','API\UserController@createSchoolByAdmin');
+Route::post('updatePlan','API\UserController@updatePlan');
+Route::post('fatchPlan','API\UserController@fatchPlan');
 
 
 Route::post('register', 'API\UserController@register');
