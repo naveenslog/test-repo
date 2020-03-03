@@ -493,6 +493,7 @@ class UserController extends Controller
                 $response[$key]['email'] = $value->email;
                 $response[$key]['name'] = $value->name;
                 $response[$key]['user_type'] = $value->user_type;
+               $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
             }
             $student_list = $response;
         }
