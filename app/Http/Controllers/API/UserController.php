@@ -617,7 +617,7 @@ class UserController extends Controller
         }else{
             $user_id = ''; 
         }
-        if( isset($data['is_block']) && !empty($data['is_block']) && $data['is_block'] !== "" && $data['is_block'] !=='undefined') {
+        if( isset($data['is_block'])) {
             $is_block = $data['is_block']; 
         }else{
             $is_block = ''; 
