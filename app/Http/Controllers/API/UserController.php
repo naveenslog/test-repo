@@ -681,7 +681,7 @@ $response[$key]['is_block'] = $value->is_block==0?"Un Block":"Block";
         $data = $request->all();
        $output = array();
         if( isset($data['name'])) {
-            $name = $data['user_id']; 
+            $name = $data['name']; 
         }else{
             $name = ''; 
         }
