@@ -200,18 +200,15 @@ class UserController extends Controller
 	{
 		$user = Auth::user();
 		$input = $request->all();
-		$schoolprofile = DB::table('schoolprofile')->where('id', $id)->first();
+		$schoolprofile = DB::table('schoolprofile as sp')
+                        ->select('sp.*','u.is_verify') 
+                        ->leftJoin('users as u', 'sp.user_id', '=', 'u.id')  
+                        ->where('sp.id', $id)->first();
 		if (!empty($schoolprofile)) 
 		{
 			$school_images = DB::table('school_images')->where('id', $id)->get();
 			$schoolprofile->otherImages = $school_images;
-            
-            $get_school_user = DB::table('users as u')              
-            ->select('u.is_verify') 
-            ->where('u.id',$schoolprofile->user_id)
-            ->get();
-            $schoolprofile->is_verify = $get_school_user->is_verify;
-			return response()->json(['success' => $schoolprofile], $this->successStatus);
+ 			return response()->json(['success' => $schoolprofile], $this->successStatus);
 		} else {
 			return response()->json(['error' => 'School not found'], 401);
 		}
