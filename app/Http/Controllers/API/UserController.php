@@ -157,7 +157,7 @@ class UserController extends Controller
 		$schoolList =
 			DB::table('schoolprofile')
 			->join('users', 'users.id', '=', 'schoolprofile.user_id')
-			->select('users.name', 'users.user_type','users.is_verify', 'schoolprofile.id', 'schoolprofile.admission_status', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating','schoolprofile.profile_image','schoolprofile.banner')
+			->select('users.name', 'users.user_type','users.is_verify', 'schoolprofile.id', 'schoolprofile.admission_status', 'schoolprofile.name', 'schoolprofile.about', 'schoolprofile.email', 'schoolprofile.phone', 'schoolprofile.admission', 'schoolprofile.add_line1', 'schoolprofile.add_line2', 'schoolprofile.area_code', 'schoolprofile.user_id', 'schoolprofile.scholarship', 'schoolprofile.fee_structure', 'schoolprofile.course_detail', 'schoolprofile.rating','schoolprofile.profile_image','schoolprofile.banner','schoolprofile.school_location_url')
 			->where($whereField, $operator, $whereFieldValue)
 			->orderBy($orderbyFieldName, $orderbyValue)
 			->get();
