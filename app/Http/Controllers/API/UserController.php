@@ -206,7 +206,7 @@ class UserController extends Controller
                         ->where('sp.id', $id)->first();
 		if (!empty($schoolprofile)) 
 		{
-			$school_images = DB::table('school_images')->where('id', $id)->get();
+			$school_images = DB::table('school_images')->where('schoolprofile_id', $id)->get();
 			$schoolprofile->otherImages = $school_images;
  			return response()->json(['success' => $schoolprofile], $this->successStatus);
 		} else {
