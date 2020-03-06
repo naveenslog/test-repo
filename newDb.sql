@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 06, 2020 at 02:40 PM
+-- Generation Time: Mar 06, 2020 at 02:46 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.28
 
@@ -748,7 +748,7 @@ CREATE TABLE `schoolprofile` (
   `rating` int(11) DEFAULT 0,
   `popularity` int(11) DEFAULT 0,
   `admission_status` varchar(225) DEFAULT NULL,
-  `school_location_url` text NOT NULL,
+  `school_location_url` text DEFAULT NULL,
   `profile_image` varchar(255) DEFAULT NULL,
   `banner` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
